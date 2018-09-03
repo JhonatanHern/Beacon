@@ -1,0 +1,148 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  background-color: #5cdb94;
+}
+nav {
+  height: 70px;
+  width: 100vw;
+  background-color: #5cdb94;
+  position: fixed;
+  color: #05396b;
+  top:0;
+  left:0;
+  padding-right: .5em;
+  z-index: 100000;
+}
+
+nav > .nav-header {
+  display: inline;
+}
+
+nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 42px;
+  color: #05396b;
+  padding: 10px 10px 10px 10px;
+}
+
+nav > .nav-btn {
+  display: none;
+}
+
+nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+nav > .nav-links > a {
+  display: inline-block;
+  padding: 18px 10px 18px 10px;
+  text-decoration: none;
+  color: #05396b;
+  font-size: 25px;
+}
+
+nav > .nav-links > a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:1000px) {
+  nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  nav > .nav-btn > label {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    padding: 13px;
+  }
+  nav > .nav-btn > label:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  nav > .nav-btn > label > span {
+    display: block;
+    width: 45px;
+    height: 20px;
+    border-top: 3px solid #05396b;
+  }
+  nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color:  #5cdb94;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 70px;
+    left: 0px;
+  }
+  nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  nav > #nav-check:not(:checked) + .nav-links {
+    height: 0px;
+  }
+  nav > #nav-check:checked + .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+@media (max-width:600px) {
+  nav {
+    height: 50px;
+  }
+  nav > .nav-header > .nav-title {
+    font-size: 30px;
+    padding: 10px 10px 10px 10px;
+  }
+  nav > .nav-btn > label {
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  nav > .nav-btn > label > span {
+    display: block;
+    width: 27px;
+    height: 10px;
+    border-top: 2px solid #05396b;
+  }
+  nav > .nav-links > a {
+    font-size: 20px;
+  }
+  nav > .nav-links {
+    top: 50px;
+  }
+}
+@keyframes fadeIn{
+  from{opacity: 0}
+  to{opacity: .5}
+}
+#cover{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #5cdb94;
+}
+#cover div{
+  border: 1px solid #05396b;
+  border-top-color : #05396b;
+  border-right-color : #05396b;
+  border-bottom-color : transparent;
+  border-left-color : transparent;
+  display: inline-block;
+  position: absolute;
+  transition-duration: 2s;
+  animation:fadeIn 4s;
+  opacity: .5;
+}

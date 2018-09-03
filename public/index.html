@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>React App</title>
+    <style>
+      #loading{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        background-color: #5cdb94;
+        height: 100vh;
+      }
+      @-webkit-keyframes spin{
+        from{-webkit-transform: translate(-50%,-50%) rotate(0deg);transform: translate(-50%,-50%) rotate(0deg);}
+        to{-webkit-transform: translate(-50%,-50%) rotate(720deg);transform: translate(-50%,-50%) rotate(720deg);}
+      }
+      @keyframes spin{
+        from{-webkit-transform: translate(-50%,-50%) rotate(0deg);transform: translate(-50%,-50%) rotate(0deg);}
+        to{-webkit-transform: translate(-50%,-50%) rotate(720deg);transform: translate(-50%,-50%) rotate(720deg);}
+      }
+      #loading span{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 6em;
+        height: 6em;
+        border-radius: 50%;
+        border:8px solid transparent;
+        border-top-color: #05396b;
+        border-right-color: #05396b;
+        -webkit-animation: spin 2s linear 0s infinite normal;
+                animation: spin 2s linear 0s infinite normal;
+      }
+      #loading span:nth-child(1){
+        opacity: .3;
+        -webkit-animation-duration: 1.5s;
+                animation-duration: 1.5s;
+      }
+      #loading span:nth-child(2){
+        opacity: .1;
+        -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+      }
+      #loading span:nth-child(3){
+        opacity: .5;
+        -webkit-animation-duration: 3s;
+                animation-duration: 3s;
+      }
+    </style>
+  </head>
+  <body onload="document.getElementById('loading').style.display='none'">
+    <div id="root"></div>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <section id="loading">
+      <span></span>
+      <span></span>
+      <span></span>
+    </section>
+  </body>
+</html>

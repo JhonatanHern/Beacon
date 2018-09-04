@@ -6,7 +6,7 @@ class Nav extends Component {
 	    	<nav>
 	          <div className="nav-header">
 	            <div className="nav-title">
-	              HoloCast
+	              Holo-Casting
 	            </div>
 	          </div>
 	          <div className="nav-btn">
@@ -18,10 +18,10 @@ class Nav extends Component {
 	          </div>
 	          <input type="checkbox" id="nav-check" />
 	          <div className="nav-links">
-	            <a href="#">Dashboard</a>
-	            <a href="#">My Channel</a>
-	            <a href="#">Following</a>
-	            <a href="#">Channels</a>
+	            <a href="" onClick={this.props.setCurrent} data-target='dashboard' >Dashboard</a>
+	            <a href="" onClick={this.props.setCurrent} data-target='myChannel' >My Channel</a>
+	            <a href="" onClick={this.props.setCurrent} data-target='following' >Following</a>
+	            <a href="" onClick={this.props.setCurrent} data-target='channels' >Channels</a>
 	          </div>
 	        </nav>
         )

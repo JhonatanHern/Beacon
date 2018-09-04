@@ -8,7 +8,7 @@ class Triangles extends Component {
 		this.renderedNode = React.createRef( )
 		setInterval(()=>{
 			this.addTriangle()
-		},700)
+		},100)
 	}
 	addTriangle(){
 		let randTo = n => Math.floor( Math.random( ) * n )

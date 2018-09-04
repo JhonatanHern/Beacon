@@ -1,19 +1,20 @@
 *{
   box-sizing: border-box;
+  font-family: 'Century Gothic',CenturyGothic,AppleGothic,sans-serif;
 }
 body{
   background-color: #5cdb94;
 }
 nav {
+  background-color: #000;
+  padding-right: .5em;
+  position: fixed;
+  z-index: 100000;
+  color: #adbff5;
   height: 70px;
   width: 100vw;
-  background-color: #5cdb94;
-  position: fixed;
-  color: #05396b;
-  top:0;
   left:0;
-  padding-right: .5em;
-  z-index: 100000;
+  top:0;
 }
 
 nav > .nav-header {
@@ -23,8 +24,10 @@ nav > .nav-header {
 nav > .nav-header > .nav-title {
   display: inline-block;
   font-size: 42px;
-  color: #05396b;
-  padding: 10px 10px 10px 10px;
+  color: #9536f7;
+  background-color: rgba(149,54,247,.15);
+  box-shadow: 0 0 30px rgba(149,54,247,.3);
+  z-index: 200;
 }
 
 nav > .nav-btn {
@@ -33,16 +36,16 @@ nav > .nav-btn {
 
 nav > .nav-links {
   display: inline;
-  float: right;
   font-size: 18px;
+  float: right;
 }
 
 nav > .nav-links > a {
-  display: inline-block;
   padding: 18px 10px 18px 10px;
+  display: inline-block;
   text-decoration: none;
-  color: #05396b;
   font-size: 25px;
+  color: #eee;
 }
 
 nav > .nav-links > a:hover {
@@ -62,27 +65,27 @@ nav > #nav-check {
   }
   nav > .nav-btn > label {
     display: inline-block;
-    width: 70px;
-    height: 70px;
     padding: 13px;
+    height: 70px;
+    width: 70px;
   }
   nav > .nav-btn > label:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
   nav > .nav-btn > label > span {
+    border-top: 3px solid #9536f7;
     display: block;
-    width: 45px;
     height: 20px;
-    border-top: 3px solid #05396b;
+    width: 45px;
   }
   nav > .nav-links {
+    transition: all 0.3s ease-in;
+    background-color:  #000;
     position: absolute;
+    overflow-y: hidden;
     display: block;
     width: 100%;
-    background-color:  #5cdb94;
     height: 0px;
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
     top: 70px;
     left: 0px;
   }
@@ -103,19 +106,19 @@ nav > #nav-check {
     height: 50px;
   }
   nav > .nav-header > .nav-title {
-    font-size: 30px;
     padding: 10px 10px 10px 10px;
+    font-size: 30px;
   }
   nav > .nav-btn > label {
-    width: 50px;
-    height: 50px;
     padding: 13px;
+    height: 50px;
+    width: 50px;
   }
   nav > .nav-btn > label > span {
+    border-top: 2px solid #adbff5;
     display: block;
-    width: 27px;
     height: 10px;
-    border-top: 2px solid #05396b;
+    width: 27px;
   }
   nav > .nav-links > a {
     font-size: 20px;
@@ -124,25 +127,50 @@ nav > #nav-check {
     top: 50px;
   }
 }
-@keyframes fadeIn{
+@keyframes fadeInHalf{
   from{opacity: 0}
-  to{opacity: .5}
+  to{opacity: 1}
 }
 #cover{
+  background-color: #000;
+  overflow: hidden;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  background-color: #5cdb94;
 }
 #cover div{
-  border: 1px solid #05396b;
-  border-top-color : #05396b;
-  border-right-color : #05396b;
+  border: 1px solid #adbff5;
   border-bottom-color : transparent;
   border-left-color : transparent;
+  border-right-color : #8024de;
+  border-top-color : #8024de;
+  animation: fadeInHalf 4s;
+  transition-duration: 2s;
   display: inline-block;
   position: absolute;
-  transition-duration: 2s;
-  animation:fadeIn 4s;
-  opacity: .5;
+  opacity: 1;
+}
+@keyframes fadeIn{
+  from{opacity: 0}
+  to{opacity: 1}
+}
+main{
+  background-color: rgba(0,0,0,.9);
+  height: calc(100vh - 70px);
+  animation: fadeIn 2s;
+  position: absolute;
+  font-size: 1.3em;
+  color: #adbff5;
+  padding: 1em;
+  width: 90vw;
+  left: 5vw;
+  top: 70px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width:600px) {
+  main{
+    height: calc(100vh - 50px);
+    top: 50px;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Following extends Component {
+class Followers extends Component {
 	constructor(props){
 		super( props )
 		this.state = {}
@@ -8,10 +8,10 @@ class Following extends Component {
 	render() {
     	return (
     		<div className="">
-    			Following
+    			Followers
     		</div>
 	    )
 	}
 }
 
-export default Following
+export default Followers

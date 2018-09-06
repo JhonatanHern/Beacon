@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import Dashboard from './content/Dashboard.js'
 import MyChannel from './content/MyChannel.js'
 import Following from './content/Following.js'
-import Channels from './content/Channels.js'
+import Followers from './content/Followers.js'
+import Channels  from './content/Channels.js'
 
 class Content extends Component {
 	componentWillReceiveProps(op,np){
@@ -19,6 +20,9 @@ class Content extends Component {
 				break
 			case 'following':
 				data = <Following data={this.props.data}/>
+				break
+			case 'followers':
+				data = <Followers data={this.props.data}/>
 				break
 			case 'channels':
 				data = <Channels data={this.props.data}/>

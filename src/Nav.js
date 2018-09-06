@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 class Nav extends Component {
+	constructor(props){
+		super(props)
+		this.handleEvent = this.handleEvent.bind(this)
+		this.myRef = React.createRef()
+	}
+	handleEvent(e){
+		e.preventDefault()
+		this.myRef.current.checked = ''
+		this.props.setCurrent(e)
+	}
 	render() {
     	return (
 	    	<nav>
@@ -16,12 +26,13 @@ class Nav extends Component {
 	              <span></span>
 	            </label>
 	          </div>
-	          <input type="checkbox" id="nav-check" />
+	          <input type="checkbox" id="nav-check" ref={this.myRef} />
 	          <div className="nav-links">
-	            <a href="" onClick={this.props.setCurrent} data-target='dashboard' >Dashboard</a>
-	            <a href="" onClick={this.props.setCurrent} data-target='myChannel' >My Channel</a>
-	            <a href="" onClick={this.props.setCurrent} data-target='following' >Following</a>
-	            <a href="" onClick={this.props.setCurrent} data-target='channels' >Channels</a>
+	            <a href="" onClick={this.handleEvent} data-target='dashboard' >Dashboard    </a>
+	            <a href="" onClick={this.handleEvent} data-target='myChannel' >My Channel   </a>
+	            <a href="" onClick={this.handleEvent} data-target='following' >Following    </a>
+	            <a href="" onClick={this.handleEvent} data-target='followers' >Followers    </a>
+	            <a href="" onClick={this.handleEvent} data-target='channels'  >Search People</a>
 	          </div>
 	        </nav>
         )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Image from '../utils/Image.js'
+import Channel from '../utils/Channel.js'
 
 class MyChannels extends Component {
 	constructor(props){
@@ -9,9 +9,10 @@ class MyChannels extends Component {
 	}
 	render() {
     	return (
-    		<div>
-    			<Image src=''/>
-    		</div>
+    		<Channel
+    			data={this.props.data.me}
+    			playLists={this.props.data.myPlaylists}
+    			/>
 	    )
 	}
 }

@@ -15,17 +15,15 @@ class App extends Component {
   	this.setCurrent = this.setCurrent.bind( this )
   }
   async setCurrent(e){
-  	e.preventDefault()
-  	this.setState({
-  		current : e.target.getAttribute('data-target')
-  	})
+  	let dataTarget = e.target.getAttribute('data-target')
 
   	let functionName = 'get' +
-  		e.target.getAttribute('data-target')[0].toUpperCase() +
-  		e.target.getAttribute('data-target').slice(1)
+  		dataTarget[0].toUpperCase() +
+  		dataTarget.slice(1)
   	
   	this.setState({
-  		data: await Ajax[ functionName ]()
+  		data : await Ajax[ functionName ](),
+  		current : dataTarget
   	})
   }
   render() {

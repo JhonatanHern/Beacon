@@ -8,6 +8,7 @@ class Ajax {
 		document.getElementById('loading').style.display = 'none'
 	}
 	static fetchWrapper( url , data , responseType = 'text' ){
+		this.loading()
 		return new Promise( ( succ , erro ) => {//test ajax simulator
 			setTimeout(()=>{
 				switch(url){
@@ -21,7 +22,8 @@ class Ajax {
 								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
 								name:'Alexander Karius',
 								mail:'aaa@aaa.net',
-								profile_pic:'cfnsvru4489fnm34jf894jf9834judfj'
+								profile_pic:'cfnsvru4489fnm34jf894jf9834judfj',
+								description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 							},
 							myPlaylists:[
 								{
@@ -120,7 +122,8 @@ class Ajax {
 						break
 					default:
 				}
-			},500)
+				this.loaded()
+			},700)
 		})
 		/* real ajax
 		return new Promise( ( succ , erro ) => {
@@ -131,9 +134,11 @@ class Ajax {
 			.then(r=>r[responseType]())
 			.then(response=>{
 				succ(response)
+				this.loaded()
 			})
 			.catch(err=>{
 				erro(err)
+				this.loaded()
 			})
 		})
 		*/

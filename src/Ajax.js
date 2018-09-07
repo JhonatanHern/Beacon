@@ -118,7 +118,43 @@ class Ajax {
 						])
 						break
 					case 'getChannels':
-						succ([])
+						succ([
+							{
+								username:'AAAAAAAAAAAAAAAAAAA',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'data:image/cdcdigabtr/tr764ebr8w7r8w0'
+							},
+							{
+								username:'AAAAAAAAAAAAAAAAAAA',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'data:image/cdcdigabtr/tr764ebr8w7r8w0'
+							},
+							{
+								username:'AAAAAAAAAAAAAAAAAAA',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'data:image/cdcdigabtr/tr764ebr8w7r8w0'
+							},
+							{
+								username:'AAAAAAAAAAAAAAAAAAA',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'data:image/cdcdigabtr/tr764ebr8w7r8w0'
+							},
+							{
+								username:'AAAAAAAAAAAAAAAAAAA',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'data:image/cdcdigabtr/tr764ebr8w7r8w0'
+							}
+						])
 						break
 					default:
 				}

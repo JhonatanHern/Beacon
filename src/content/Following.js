@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MiniProfile from '../utils/MiniProfile.js'
 
 class Following extends Component {
 	constructor(props){
@@ -7,8 +8,13 @@ class Following extends Component {
 	}
 	render() {
     	return (
-    		<div className="">
-    			Following
+    		<div>
+    			<h2>Channels</h2>
+    			{
+    				this.props.data.map((d,i)=>
+    					<MiniProfile data={d} key={i}/>
+    				)
+    			}
     		</div>
 	    )
 	}

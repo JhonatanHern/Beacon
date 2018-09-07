@@ -5,12 +5,16 @@ import Nav from './Nav.js'
 import Content from './Content.js'
 import Triangles from './Triangles.js'
 import Ajax from './Ajax.js'
+import Audio from './utils/Audio.js'
 
 class App extends Component {
   constructor(props){
   	super(props)
   	this.state = {
-  		current : ''
+  		current : '',
+      me:null,
+      opacity:'1',
+      audioSrc:'$UICIDEBOY$ - I NO LONGER FEAR THE RAZOR GUARDING MY HEEL.mp3'
   	}
   	this.setCurrent = this.setCurrent.bind( this )
   }
@@ -29,9 +33,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav setCurrent={this.setCurrent}/>
+        <Nav opacity={this.state.opacity} setCurrent={this.setCurrent}/>
         <Triangles />
-        <Content current={this.state.current} data={this.state.data}/>
+        <Content opacity={this.state.opacity} me={this.state.me} current={this.state.current} data={this.state.data}/>
+        <Audio src={this.state.audioSrc}/>
       </div>
     );
   }

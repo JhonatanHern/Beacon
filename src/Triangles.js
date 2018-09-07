@@ -25,7 +25,8 @@ class Triangles extends Component {
 			)
 		this.setState({triangles:this.state.triangles.concat([triangle])})
 		setTimeout(()=>{
-			node.current.style.opacity = '0'
+			if(node.current)
+				node.current.style.opacity = '0'
 		},5000)
 		setTimeout(()=>{
 			this.setState({triangles:this.state.triangles.filter(t=>{

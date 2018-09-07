@@ -13,7 +13,7 @@ class Nav extends Component {
 	}
 	render() {
     	return (
-	    	<nav>
+	    	<nav style={{opacity:this.props.opacity}}>
 	          <div className="nav-header">
 	            <div className="nav-title">
 	              Holo-Casting
@@ -28,11 +28,11 @@ class Nav extends Component {
 	          </div>
 	          <input type="checkbox" id="nav-check" ref={this.myRef} />
 	          <div className="nav-links">
-	            <a href="" onClick={this.handleEvent} data-target='dashboard' >Dashboard    </a>
-	            <a href="" onClick={this.handleEvent} data-target='myChannel' >My Channel   </a>
-	            <a href="" onClick={this.handleEvent} data-target='following' >Following    </a>
-	            <a href="" onClick={this.handleEvent} data-target='followers' >Followers    </a>
-	            <a href="" onClick={this.handleEvent} data-target='channels'  >Search People</a>
+	            <a onClick={this.handleEvent} data-target='dashboard' >Dashboard    </a>
+	            <a onClick={this.handleEvent} data-target='myChannel' >My Channel   </a>
+	            <a onClick={this.handleEvent} data-target='following' >Following    </a>
+	            <a onClick={this.handleEvent} data-target='followers' >Followers    </a>
+	            <a onClick={this.handleEvent} data-target='channels'  >Search People</a>
 	          </div>
 	        </nav>
         )

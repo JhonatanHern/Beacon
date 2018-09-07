@@ -13,24 +13,24 @@ class Content extends Component {
 		let data = null
 		switch(this.props.current){
 			case 'dashboard':
-				data = <Dashboard data={this.props.data}/>
+				data = <Dashboard me={this.props.me} data={this.props.data}/>
 				break
 			case 'myChannel':
-				data = <MyChannel data={this.props.data}/>
+				data = <MyChannel me={this.props.me} data={this.props.data}/>
 				break
 			case 'following':
-				data = <Following data={this.props.data}/>
+				data = <Following me={this.props.me} data={this.props.data}/>
 				break
 			case 'followers':
-				data = <Followers data={this.props.data}/>
+				data = <Followers me={this.props.me} data={this.props.data}/>
 				break
 			case 'channels':
-				data = <Channels data={this.props.data}/>
+				data = <Channels me={this.props.me} data={this.props.data}/>
 				break
 			default:
 		}
     	return (
-    		<main>
+    		<main style={{opacity:this.props.opacity}}>
     			{data}
     		</main>
 	    )

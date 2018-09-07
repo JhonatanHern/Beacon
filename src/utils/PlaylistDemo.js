@@ -5,6 +5,10 @@ class PlaylistDemo extends Component {
 		e.preventDefault()
 	}
 	render() {
+		/*
+		 * The use of the tabIndex attribute makes the element focusable.
+		 * we use this as a way to modify the 
+		*/
     	return (
     		<div tabIndex="666" className="playlist-demo">
     			<a>{this.props.data.Entry.name}</a>

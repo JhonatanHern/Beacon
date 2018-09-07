@@ -6,8 +6,16 @@ class MiniProfile extends Component {
 	}
 	render() {
 		return (
-			<a>
-				this.props.data.name (@{this.props.data.username})
+			<a className="mini-profile">
+				<div>
+					<span>
+						{this.props.data.name}
+					</span> 
+					<small>
+						 (@{this.props.data.username})
+					</small>
+				</div>
+				{this.props.follow && <button onClick={this.props.follow}>follow</button>}
 			</a>
 		)
 	}

@@ -1,3 +1,20 @@
+/* 
+ * Audio.js
+ * 
+ * This is a pretty long component (for React standards)
+ * It handles everything related to audio, it even
+ * includes the ajax code to retrieve the audio from the database.
+ * It also handles the progressbar, the volume & the audio download.
+ * 
+ * Visually, you can find it as the audio bottom bar with the audio
+ * controls.
+ * 
+ * Good luck editing this code, this is the most important component
+ * of the entire app.
+ * 
+ * reach me at jhonatanhernandez998@gmail.com
+*/
+
 import React, { Component } from 'react'
 
 class Audio extends Component {
@@ -12,9 +29,11 @@ class Audio extends Component {
 		this.handleEnd = this.handleEnd.bind(this)
 		this.updateBar = this.updateBar.bind(this)
 		this.download = this.download.bind(this)
+		this.volumeClick = this.volumeClick.bind(this)
 		this.state = {
 			play:false,
-			progress:0
+			progress:0,
+			volume:.9
 		}
 		this.updateSrc(true)
 		setInterval(this.updateBar,300)
@@ -26,8 +45,8 @@ class Audio extends Component {
 			})
 		}
 	}
-	updateSrc(isFirstCall,np){
-		const props = np ? np : this.props
+	updateSrc(isFirstCall){
+		const props = this.props
 		if ( props.src ) {
 			if (/\.mp3$/.test(props.src)) {//simple file
 				fetch(props.src)
@@ -108,8 +127,10 @@ class Audio extends Component {
 			}
 		}
 	}
-	componentWillReceiveProps(np,op){
-		this.updateSrc(false,np)
+	componentDidUpdate(pp){
+		if (pp.src === this.props.src)
+			return
+		this.updateSrc(false)
 	}
 	playClick(e){
 		e.preventDefault()
@@ -132,7 +153,13 @@ class Audio extends Component {
 		let proportion = clickWidth / barWidth
 		//this.setState({progress : ( clickWidth *100 ) / barWidth })
 		this.audioRef.current.currentTime = proportion * this.audioRef.current.duration
-
+	}
+	volumeClick(e){
+		let volume = (( window.innerHeight - e.clientY) - 60)/180
+		this.audioRef.current.volume = volume
+		this.setState({
+			volume : volume
+		})
 	}
 	render() {
 		return (
@@ -151,9 +178,11 @@ class Audio extends Component {
 					</div>
 				</div>
 				<span id="volume" title="volume" style={{borderLeft:'1px solid #222'}}>
-					<div className="volume-progress-bar">
-						<div className="volume-progress">
-							
+					<div className="deploy">
+						<div className="volume-progress-bar" onClick={this.volumeClick}>
+							<div className="volume-progress" style={{height:this.state.volume*100 + '%'}}>
+								
+							</div>
 						</div>
 					</div>
 				</span>

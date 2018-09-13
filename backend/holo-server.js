@@ -9,7 +9,7 @@ stream.on('data', (chunk) => {
   process.stdout.write(chunk.toString())
 })
 
-chokidar.watch('dna', {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
+function restart() {
 	holoserver.kill('SIGHUP')
 	console.clear()
 	console.log('Restarting server...')
@@ -18,4 +18,7 @@ chokidar.watch('dna', {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
 	stream.on('data', (chunk) => {
 		process.stdout.write(chunk.toString())
 	})
-})
+}
+
+chokidar.watch('dna', {ignored: /(^|[\/\\])\../}).on('all',restart)
+chokidar.watch('ui', {ignored: /(^|[\/\\])\../}).on('all',restart)

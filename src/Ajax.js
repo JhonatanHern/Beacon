@@ -13,7 +13,158 @@ class Ajax {
 			setTimeout(()=>{
 				switch(url){
 					case 'getDashboard':
-						succ([])
+						succ([
+							{
+								username:'deadmatch',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Alexander Karius',
+								mail:'aaa@aaa.net',
+								profile_pic:'cfnsvru4489fnm34jf894jf9834judfj',
+								description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+								playlists : [
+									{
+										Entry:{
+											name : 'examplay',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'examplay2',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862349
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'examplay3',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 3462549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'examplay4',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34852549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									}
+								]
+							},
+							{
+								username:'malditoMaduro',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Kris Kras',
+								mail:'aaa@aaa.net',
+								profile_pic:'cfnsvru4489fnm34jf894jf9834judfj',
+								description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+								playlists : [
+									{
+										Entry:{
+											name : 'xexamplay',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'xexamplay2',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862349
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'xexamplay3',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 3462549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'examplay4',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34852549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									}
+								]
+							},
+							{
+								username:'killer',
+								address:'fwecru7w47rcbr7twrcfowmrcy4srsw',
+								name:'Amons Amad',
+								mail:'aaa@aaa.net',
+								profile_pic:'cfnsvru4489fnm34jf894jf9834judfj',
+								description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+								playlists : [
+									{
+										Entry:{
+											name : 'jexamplay',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'jexamplay2',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34862349
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'kexamplay3',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 3462549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									},
+									{
+										Entry:{
+											name : 'huioexamplay4',
+											tags : ['a','b','c'],
+											concept : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+											owner : 'cdzawrfscefgnefui',
+											created : 34852549
+										},
+										Hash:'fieywgfyigen89f4g8fgd84gdf7'
+									}
+								]
+							},
+						])
 						break
 					case 'getMyChannel':
 						succ({

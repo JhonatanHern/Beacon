@@ -190,6 +190,7 @@ main{
 	position: absolute;
 	color: #adbff5;
 	padding: 1em;
+	padding-bottom: 60px;
 	width: 90vw;
 	left: 5vw;
 	top: 70px;
@@ -241,6 +242,9 @@ main{
 	width: 100%;
 	margin-right: 0;
 }
+.playlist-demo.active{
+	margin-bottom: 2em;
+}
 .playlist-demo:focus {
   box-shadow: 0 0 10px 0px #9536f7,0 0 10px 0px #9536f7,0 0 10px 0px #9536f7;
   outline: none;
@@ -266,6 +270,9 @@ main{
 .playlist-demo:not(:focus) button,.playlist-demo:not(:focus) p{
 	display: none;
 }
+.playlist-demo.active:not(:focus) button,.playlist-demo.active:not(:focus) p{
+	display: block;
+}
 .playlist-demo p,.playlist-demo button{
 	overflow: hidden;
 	animation: sizer .3s;
@@ -273,7 +280,8 @@ main{
 .playlist-demo button{
 	background-color: #9536f7;
 	color: white;
-	width: 100%;
+	max-width: 100%;
+	min-width: 10%;
 	font-size: 1em;
 	border: none;
 	border-radius: 1em;

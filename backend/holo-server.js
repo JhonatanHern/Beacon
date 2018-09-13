@@ -19,4 +19,3 @@ chokidar.watch('dna', {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
 		process.stdout.write(chunk.toString())
 	})
 })
-

@@ -1,0 +1,13 @@
+{
+    "title" : "episode Eschema",
+    "type" : "object",
+    "properties" : {
+        "timestamp":{
+            "type":"string"
+        },
+        "datalink":{
+            "type":"string"
+        }
+    },
+    "required":["timestamp","datalink"]
+}

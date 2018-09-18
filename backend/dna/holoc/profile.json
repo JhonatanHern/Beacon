@@ -1,0 +1,25 @@
+{
+    "title": "Profile Schema",
+    "type": "object",
+    "properties": {
+	"name": {
+	    "type": "string"
+	},
+	"username": {
+	    "type": "string"
+	},
+	"email": {
+		"type": "string"
+	},
+	"description": {
+		"type": "string"
+	},
+	"address": {
+		"type": "string"
+	},
+	"profilepic": {
+		"type": "string"
+    }
+	},
+    "required": ["name","username","email","description","address","profilepic"]
+}

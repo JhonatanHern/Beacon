@@ -1,14 +1,15 @@
 //import React , { Component } from 'react'
 
 class Ajax {
-	static loading(){
+	static loading(){// activates preloader
 		document.getElementById('loading').style.display = 'block'
 	}
-	static loaded(){
+	static loaded(){// deactivates preloader
 		document.getElementById('loading').style.display = 'none'
 	}
-	static fetchWrapper( url , data , responseType = 'text' ){
+	static fetchWrapper( url , data = '' , responseType = 'text' ){
 		this.loading()
+		/*
 		return new Promise( ( succ , erro ) => {//test ajax simulator
 			setTimeout(()=>{
 				switch(url){
@@ -312,29 +313,41 @@ class Ajax {
 				this.loaded()
 			},700)
 		})
-		/* real ajax
+		*/
+		 // real ajax
 		return new Promise( ( succ , erro ) => {
-			fetch('/fn/podcast/'+url,{
+			fetch('/fn/holoc/'+url,{
 				method : 'POST',
 				body : data
 			})
-			.then(r=>r[responseType]())
 			.then(response=>{
-				succ(response)
-				this.loaded()
+				return response[responseType]()
+			})
+			.then(response=>{
+				/*
+				 * Little detail, when we execute response.json
+				 * is not equal to JSON.parse, and returns
+				 * boolean values as strings. The next 5 lines
+				 * take care of that situation:
+				*/
+				if (response==='true'||response==='false') {
+					succ(JSON.parse(response))
+				}else{
+					succ(response)
+				}
+				this.loaded()//deactivates preloader
 			})
 			.catch(err=>{
 				erro(err)
-				this.loaded()
+				this.loaded()//deactivates preloader
 			})
 		})
-		*/
 	}
 	static getDashboard(data){
 		return this.fetchWrapper('getDashboard',data,'json')
 	}
-	static getMyChannel(data){
-		return this.fetchWrapper('getMyChannel',data,'json')
+	static getMyChannel(){
+		return this.fetchWrapper('getMyChannel','','json')
 	}
 	static getFollowing(data){
 		return this.fetchWrapper('getFollowing',data,'json')
@@ -345,6 +358,7 @@ class Ajax {
 	static getChannels(data){
 		return this.fetchWrapper('getChannels',data,'json')
 	}
+	static createProfile(data){}
 }
 
 export default Ajax

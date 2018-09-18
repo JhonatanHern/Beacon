@@ -1,56 +1,90 @@
 {
-    "Version": 1,
-    "UUID": "8b611cc9-b780-11e8-8996-705ab6aa60cc",
-    "Name": "backend",
-    "Properties": {
-        "description": "provides an application template",
-        "language": "en"
-    },
-    "PropertiesSchemaFile": "properties_schema.json",
-    "BasedOn": "",
-    "RequiresVersion": 26,
-    "DHTConfig": {
-        "HashType": "sha2-256",
-        "RedundancyFactor": 0
-    },
-    "Progenitor": {
-        "Identity": "",
-        "PubKey": null
-    },
-    "Zomes": [
-        {
-            "Name": "sampleZome",
-            "Description": "provide a sample zome",
-            "CodeFile": "sampleZome.js",
-            "RibosomeType": "js",
-            "BridgeFuncs": null,
-            "Config": null,
-            "Entries": [
-                {
-                    "Name": "sampleEntry",
-                    "DataFormat": "json",
-                    "Schema": "",
-                    "SchemaFile": "sampleEntry.json",
-                    "Sharing": "public"
-                }
-            ],
-            "Functions": [
-                {
-                    "Name": "sampleEntryCreate",
-                    "CallingType": "json",
-                    "Exposure": "public"
-                },
-                {
-                    "Name": "sampleEntryRead",
-                    "CallingType": "json",
-                    "Exposure": "public"
-                },
-                {
-                    "Name": "doSampleAction",
-                    "CallingType": "json",
-                    "Exposure": "public"
-                }
-            ]
-        }
-    ]
+	"Version": 1,
+	"UUID": "8b611cc9-b780-11e8-8996-705ab6aa60cc",
+	"Name": "holo-casting",
+	"Properties": {
+		"description": "distributed podcast",
+		"language": "en"
+	},
+	"PropertiesSchemaFile": "properties_schema.json",
+	"DHTConfig": {
+		"HashType": "sha2-256",
+		"RedundancyFactor": 0
+	},
+	"Zomes": [
+		{
+			"Name": "holoc",
+			"Description": "provide a sample zome",
+			"CodeFile": "holoc.js",
+			"RibosomeType": "js",
+			"BridgeFuncs": null,
+			"Config": null,
+			"Entries":[
+				{
+					"Name": "profile",
+					"DataFormat": "json",
+					"Sharing": "public",
+					"SchemaFile": "profile.json"
+
+				},
+				{
+					"Name": "profilePic",
+					"DataFormat": "string",
+					"Sharing": "public"
+				},
+				{
+					"Name": "episode", 
+					"DataFormat": "json",
+					"Sharing": "public",
+					"SchemaFile": "episode.json"
+
+				},
+				{
+					"Name": "opinion",
+					"DataFormat": "json",
+					"Sharing": "public",
+					"SchemaFile": "opinion.json"
+				},
+				{
+					"Name": "playlist",
+					"DataFormat": "json",
+					"Sharing": "public",
+					"SchemaFile": "playlist.json"
+				},
+				{
+					"Name": "track",
+					"DataFormat": "string",
+					"Sharing": "public"
+				},
+				{
+					"Name": "tag",
+					"DataFormat": "json",
+					"Sharing": "public",
+					"SchemaFile": "tag.json"
+				},
+				{
+					"Name": "links",
+					"DataFormat": "links", 
+					"Sharing": "public"
+				}
+			],
+			"Functions": [
+				{
+					"Name": "getMyChannel",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "sampleEntryRead",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "doSampleAction",
+					"CallingType": "json",
+					"Exposure": "public"
+				}
+			]
+		}
+	]
 }

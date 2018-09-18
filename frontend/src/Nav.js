@@ -28,10 +28,33 @@ class Nav extends Component {
 	          </div>
 	          <input type="checkbox" id="nav-check" ref={this.myRef} />
 	          <div className="nav-links">
-	            <a onClick={this.handleEvent} data-target='dashboard' >Dashboard    </a>
-	            <a onClick={this.handleEvent} data-target='myChannel' >My Channel   </a>
-	            <a onClick={this.handleEvent} data-target='following' >Following    </a>
-	            <a onClick={this.handleEvent} data-target='followers' >Followers    </a>
+	            {
+	            	this.props.user &&
+	            	<a onClick={this.handleEvent} data-target='dashboard' >
+	            		Dashboard
+	            	</a>
+	            }
+	            {
+	            	this.props.user &&
+	            	<a onClick={this.handleEvent} data-target='myChannel' >
+	            		My Channel
+	            	</a>
+	            }
+	            {
+	            	!this.props.user &&
+	            	<a onClick={this.handleEvent} data-target='createChannel' >
+	            		Create Channel
+	            	</a>
+	            }
+	            {
+	            	this.props.user &&
+	            	<a onClick={this.handleEvent} data-target='following' >Following    </a>
+	            }
+
+	            {
+	            	this.props.user &&
+	            	<a onClick={this.handleEvent} data-target='followers' >Followers    </a>
+	            }
 	            <a onClick={this.handleEvent} data-target='channels'  >Search People</a>
 	          </div>
 	        </nav>

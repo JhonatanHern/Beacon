@@ -1,0 +1,17 @@
+{
+    "title" : "Opinion Eschema",
+    "type" : "object",
+    "properties" : {
+        "value":{
+            "type":"string"
+        },
+        "comment":{
+            "type":"string"
+        },
+        
+            "user":{
+                "type":"string"
+            }
+    },
+    "required":["value","comment","user"]
+}

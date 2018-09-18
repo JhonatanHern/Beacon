@@ -1,0 +1,13 @@
+{
+    "title" : "Tag Eschema",
+    "type" : "object",
+    "properties" : {
+        "concept":{
+            "type":"string"
+        },
+        "title":{
+            "type":"string"
+        }
+    },
+    "required":["concept","title"]
+}

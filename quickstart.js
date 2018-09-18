@@ -41,3 +41,9 @@ reactServer.on('warning', (warning) => {
   console.warn(warning.code)
   console.warn(warning.stack)
 })
+holocServer.on('warning', (warning) => {
+  console.warn(warning.name)
+  console.warn(warning.message)
+  console.warn(warning.code)
+  console.warn(warning.stack)
+})

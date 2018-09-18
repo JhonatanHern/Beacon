@@ -15,3 +15,5 @@
 #
 
 - In order to run this app, you will have to go (via terminal) to the folders frontend and backend and run "npm install" in every folder
+
+- To take the app to production just build the react app and paste the result in the ui folder of the backend. Then, deploy it as you would do with any other holochain app

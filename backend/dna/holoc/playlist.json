@@ -1,0 +1,22 @@
+{
+    "title" : "Playlist Eschema",
+    "type" : "object",
+    "properties" : {
+        "name":{
+            "type":"string"
+        },
+        "tag":{
+            "type":"array"
+        },
+        "concept":{
+            "type":"string"
+        },
+        "owner":{
+            "type":"string"
+        },
+        "createrd":{
+            "type":"string"
+        }
+    },
+    "required":["name","tag","concept","owner","createrd"]
+}

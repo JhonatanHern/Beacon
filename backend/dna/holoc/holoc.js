@@ -1,3 +1,11 @@
+/*
+  App constants
+*/
+var APP_ID = App.DNA.Hash,
+  ME = App.Key.Hash
+
+
+
 /*******************************************************************************
  * Utility functions
  ******************************************************************************/
@@ -173,4 +181,55 @@ function validateModPkg (entryType) {
  */
 function validateDelPkg (entryType) {
   return null;
+}
+
+
+function getMyProfileHash() {
+  return query({
+    Return : {
+      Hashes : true
+    },
+    Constrain : {
+      EntryTypes : ["profile"],
+      Count : 1
+    }
+  })[0]
+}
+
+function getMyProfile() {
+  return query({
+    Return : {
+      Hashes : true,
+      Entries: true
+    },
+    Constrain : {
+      EntryTypes : ["profile"],
+      Count : 1
+    }
+  })[0]
+}
+
+function getMyChannel(argument) {
+  var me = getMyProfile()
+  if ( ! me ) {
+    return 'false'
+  }
+  return JSON.stringify({
+      me : me.Entry,
+      myPlaylists : getLinks(me.Hash,'playlist',{
+        Load : true
+      })
+    })
+}
+
+function createProfile(data) {
+  var profileHash = commit('profile',data)
+  var linkHash = commit('link',{
+    Links:[{
+      Base : APP_ID,
+      Tag : 'profile',
+      Link : profileHash
+    }]
+  })
+  return linkHash
 }

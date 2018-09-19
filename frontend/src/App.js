@@ -19,7 +19,7 @@ class App extends Component {
 			audioSrc:'$UICIDEBOY$ - I NO LONGER FEAR THE RAZOR GUARDING MY HEEL.mp3'
 		}
 
-		this.closeModal = this.closeModal.bind( this )
+		this.closeModal    = this.closeModal.bind( this )
 		this.setCurrent    = this.setCurrent.bind( this )
 		this.initProfile   = this.initProfile.bind( this )
 		this.createChannel = this.createChannel.bind( this )
@@ -36,8 +36,10 @@ class App extends Component {
 	 *     data.address
 	 *     data.profile_pic
 	 *     data.description
+	 *     data.file // file object
 	*/
 	submitProfile(data){
+		this.setState({displayCreateProfileModal:false})
 		Ajax.createProfile(data)
 	}
 	closeModal(e){

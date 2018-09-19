@@ -63,7 +63,7 @@
 					"SchemaFile": "tag.json"
 				},
 				{
-					"Name": "links",
+					"Name": "link",
 					"DataFormat": "links", 
 					"Sharing": "public"
 				}
@@ -75,12 +75,12 @@
 					"Exposure": "public"
 				},
 				{
-					"Name": "sampleEntryRead",
-					"CallingType": "json",
+					"Name": "saveImage",
+					"CallingType": "string",
 					"Exposure": "public"
 				},
 				{
-					"Name": "doSampleAction",
+					"Name": "createProfile",
 					"CallingType": "json",
 					"Exposure": "public"
 				}

@@ -358,7 +358,40 @@ class Ajax {
 	static getChannels(data){
 		return this.fetchWrapper('getChannels',data,'json')
 	}
-	static createProfile(data){}
+	static readImageBin(file){
+		return new Promise((succ,err)=>{
+			let reader = new FileReader()
+			reader.onload = ()=>{
+				let binData = reader.result
+				succ(binData)
+			}
+			reader.onerror = ()=>{
+				err('Reading error')
+			}
+			reader.readAsDataURL(file)
+		})
+	}
+	static async createProfile({file,username,name,mail,address,description}){
+		let imageHash = false
+		if (file) {
+			imageHash = await this.fetchWrapper('saveImage',await this.readImageBin(file))
+		}
+		if (imageHash) {
+			console.log(imageHash)
+		} else {
+			console.log('image not uploaded')
+		}
+		let profileData = {
+			profile_pic : imageHash,
+			description : description,
+			username : username,
+			address : address,
+			name : name,
+			mail : mail,
+		}
+		let profileHash = await this.fetchWrapper( 'createProfile' , JSON.stringify( profileData ) )
+		console.log(profileHash)
+	}
 }
 
 export default Ajax

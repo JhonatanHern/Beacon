@@ -19,7 +19,7 @@ var APP_ID = App.DNA.Hash,
  */
 function isValidEntryType (entryType) {
   // Add additonal entry types here as they are added to dna.json.
-  return ["sampleEntry"].includes(entryType);
+  return true || ["sampleEntry"].includes(entryType);
 }
 
 /**
@@ -220,6 +220,11 @@ function getMyChannel(argument) {
         Load : true
       })
     })
+}
+
+function saveImage(image) {
+  // console.log(image.slice(0,25))
+  return commit('profilePic',image)
 }
 
 function createProfile(data) {

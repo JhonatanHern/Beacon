@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Image from './Image.js'
-// import Ajax from '../Ajax.js'
+// import resize from './resize.js'
 
 class CreateProfileModal extends Component{
 	constructor(props){
@@ -8,11 +8,12 @@ class CreateProfileModal extends Component{
 		this.uploadZoneClick = this.uploadZoneClick.bind(this)
 		this.handleFormSend = this.handleFormSend.bind(this)
 		this.handleFile = this.handleFile.bind(this)
-		this.submitForm = this.submitForm.bind(this)
+		// this.submitForm = this.submitForm.bind(this)
 		this.dropZone = this.dropZone.bind(this)
 		this.change = this.change.bind(this)
 		this.state = {
-			pictureSrc : 'default.png'
+			pictureSrc : 'default.png',
+			file : null
 		}
 		this.profile_pic = React.createRef()
 		this.description = React.createRef()
@@ -26,22 +27,23 @@ class CreateProfileModal extends Component{
 	handleFormSend(e){
 		e.preventDefault()
 		this.props.done({
-			profile_pic : this.profile_pic.current.value ,
 			description : this.description.current.value ,
 			username    : this.username.current.value    ,
 			address     : this.address.current.value     ,
 			mail        : this.mail.current.value        ,
-			name        : this.name.current.value
+			name        : this.name.current.value        ,
+			file        : this.state.file
 		})
 	}
 	handleFile(file){
 		const reader = new FileReader()
 		reader.addEventListener("load", () => {
-		    this.setState({pictureSrc : reader.result});
+		    this.setState({pictureSrc : reader.result})
 		},false);
 
 		if (file) {
-		    reader.readAsDataURL(file);
+			this.setState({file:file})
+		    reader.readAsDataURL(file)
 		}
 	}
 	change(e){
@@ -63,7 +65,6 @@ class CreateProfileModal extends Component{
 			this.handleFile(e.dataTransfer.items[0].getAsFile()) // the files that were dropped
 		})
 	}
-	submitForm(e){}
 	render(){
 		return (
 			<section id='create-profile-modal' onClick={this.props.close}>
@@ -79,7 +80,7 @@ class CreateProfileModal extends Component{
 					<input placeholder="address" ref={this.address}/>
 					<textarea placeholder="description" ref={this.description}/>
 					<input type="file" style={{display:'none'}} onChange={this.change} ref={this.profile_pic}/>
-					<button onClick={this.submitForm}>
+					<button onClick={this.handleFormSend}>
 						Create Profile
 					</button>
 				</form>

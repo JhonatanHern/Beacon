@@ -10,8 +10,8 @@ class MyChannels extends Component {
 	render() {
     	return (
     		<Channel
-    			data={this.props.data.me}
-    			playLists={this.props.data.myPlaylists}
+    			data={this.props.me.Entry}
+    			playLists={this.props.me.myPlaylists}
     			/>
 	    )
 	}

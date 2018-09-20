@@ -183,6 +183,10 @@ function validateDelPkg (entryType) {
   return null;
 }
 
+function validateLink(entryType, hash, links, package, sources){
+  return true
+}
+
 
 function getMyProfileHash() {
   return query({
@@ -209,22 +213,54 @@ function getMyProfile() {
   })[0]
 }
 
+function follow(followHash) {
+  var hash = commit('link', {
+    Links: [
+      {
+        Base: getMyProfileHash(),
+        Link: followHash,
+        Tag: 'follow'
+      }
+    ]
+  })
+  if (!hash) {
+    console.log('error on creating follow_link')
+    return
+  }
+  hash = commit('link', {
+    Links: [
+      {
+        Base: followHash,
+        Link: getMyProfileHash(),
+        Tag: 'follower'
+      }
+    ]
+  })
+  if (!hash) {
+    console.log('error on creating follower_link')
+    return
+  }
+  return hash
+}
+
+
 function getMyChannel(argument) {
   var me = getMyProfile()
   if ( ! me ) {
     return 'false'
   }
-  return JSON.stringify({
-      me : me.Entry,
-      myPlaylists : getLinks(me.Hash,'playlist',{
+  me.myPlaylists = getLinks(me.Hash,'playlist',{
         Load : true
       })
-    })
+  return JSON.stringify(me)
 }
 
 function saveImage(image) {
-  // console.log(image.slice(0,25))
   return commit('profilePic',image)
+}
+
+function getImg(hash){
+  return get(hash)
 }
 
 function createProfile(data) {
@@ -237,4 +273,20 @@ function createProfile(data) {
     }]
   })
   return linkHash
+}
+function getChannels(){
+  return getLinks(APP_ID,'profile', { Load: true })
+}
+
+function getDashboard(argument) {
+  
+}
+
+
+function getFollowing() {
+  return JSON.stringify(getLinks( getMyProfileHash() , 'follow' , { Load : true } ))
+}
+
+function getFollowers() {
+  return JSON.stringify(getLinks( getMyProfileHash() , 'follower' , { Load : true } ))
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Nav from './Nav.js'
 import Content from './Content.js'
-import Triangles from './Triangles.js'
+import Triangles from './Triangles.js'//visual effects in the background
 import Ajax from './Ajax.js'
 import Audio from './utils/Audio.js'
 import CreateProfileModal from './utils/CreateProfileModal.js'
@@ -13,17 +13,20 @@ class App extends Component {
 		super(props)
 		this.state = {
 			current : '',
+			following : [],
 			me:null,
 			opacity:'1',
 			displayCreateProfileModal:false,
 			audioSrc:'$UICIDEBOY$ - I NO LONGER FEAR THE RAZOR GUARDING MY HEEL.mp3'
 		}
 
+		this.follow    = this.follow.bind( this )
 		this.closeModal    = this.closeModal.bind( this )
 		this.setCurrent    = this.setCurrent.bind( this )
 		this.initProfile   = this.initProfile.bind( this )
 		this.createChannel = this.createChannel.bind( this )
 		this.submitProfile = this.submitProfile.bind( this )
+		this.updateFollowing = this.updateFollowing.bind( this )
 
 		this.initProfile()
 	}
@@ -34,13 +37,17 @@ class App extends Component {
 	 *     data.name
 	 *     data.mail
 	 *     data.address
-	 *     data.profile_pic
 	 *     data.description
 	 *     data.file // file object
 	*/
-	submitProfile(data){
+	async submitProfile(data){
 		this.setState({displayCreateProfileModal:false})
-		Ajax.createProfile(data)
+		await Ajax.createProfile(data)
+		this.initProfile()
+	}
+	async follow(hash){
+		await Ajax.follow(hash)
+		this.updateFollowing()
 	}
 	closeModal(e){
 		if ( e.target.id === 'create-profile-modal' ) {
@@ -50,11 +57,27 @@ class App extends Component {
 	createChannel(){
 		this.setState({displayCreateProfileModal:true})
 	}
+	async updateFollowing(){
+		let following = await Ajax.getFollowing()
+		console.log('following:')
+		console.log(following)
+		this.setState({following:following})
+	}
 	async initProfile(){
-		this.setState({ me : await Ajax.getMyChannel() })
+		let data =  await Ajax.getMyChannel()
+		this.setState({ me : data })
+		if (data) {
+			this.updateFollowing()
+		}
 	}
 	async setCurrent(e){
 		let dataTarget = e.target.getAttribute('data-target')
+		if (dataTarget === 'myChannel'){
+			this.setState({
+				current : 'myChannel'
+			})
+			return
+		}
 		if (dataTarget === 'createChannel') {
 			this.createChannel()
 			return
@@ -74,7 +97,7 @@ class App extends Component {
 			<div>
 				<Nav user={this.state.me} opacity={this.state.opacity} setCurrent={this.setCurrent}/>
 				<Triangles />
-				<Content opacity={this.state.opacity} me={this.state.me} current={this.state.current} data={this.state.data}/>
+				<Content follow={this.follow} following={this.state.following} opacity={this.state.opacity} me={this.state.me} current={this.state.current} data={this.state.data}/>
 				<Audio src={this.state.audioSrc}/>
 				{this.state.displayCreateProfileModal && <CreateProfileModal close={this.closeModal} done={this.submitProfile}/>}
 			</div>

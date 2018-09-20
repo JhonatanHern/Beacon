@@ -6,16 +6,23 @@ class Channels extends Component {
 		super(props)
 		this.follow = this.follow.bind(this)
 	}
-	follow(e){
-		e.preventDefault()
+	follow(hash){
+		this.props.follow(hash)
 	}
 	render() {
+		let i = 0,//counter
+			followingHashes = this.props.following.map(f=>f.Hash)
     	return (
     		<div>
     			<h2>Channels</h2>
     			{
-    				this.props.data.map((d,i)=>
-    					<MiniProfile data={d} key={i} follow={this.follow}/>
+    				this.props.data.filter(d=>followingHashes.includes(d.Hash)).filter(d=>d.Hash!==this.props.me.Hash).map((d)=>
+    					<MiniProfile data={d} key={i++} />
+    				)
+    			}
+    			{
+    				this.props.data.filter(d=>!followingHashes.includes(d.Hash)).filter(d=>d.Hash!==this.props.me.Hash).map((d)=>
+    					<MiniProfile data={d} key={i++} follow={this.follow} />
     				)
     			}
     		</div>

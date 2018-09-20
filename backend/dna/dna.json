@@ -75,13 +75,38 @@
 					"Exposure": "public"
 				},
 				{
+					"Name": "getImg",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
 					"Name": "saveImage",
 					"CallingType": "string",
 					"Exposure": "public"
 				},
 				{
+					"Name": "getChannels",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
 					"Name": "createProfile",
 					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getFollowing",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getFollowers",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "follow",
+					"CallingType": "string",
 					"Exposure": "public"
 				}
 			]

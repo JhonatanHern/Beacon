@@ -1,3 +1,4 @@
+// é á í ó ú ñ Ñ
 const { spawn } = require('child_process')
 
 let holocServer = null,
@@ -32,18 +33,18 @@ reactServer.stdout.on('data', (chunk) => {
 
 
 reactServer.on('error', (err) => {
-  console.log('Failed to start subprocess.')
+	console.log('Failed to start subprocess.')
 })
 
 reactServer.on('warning', (warning) => {
-  console.warn(warning.name)
-  console.warn(warning.message)
-  console.warn(warning.code)
-  console.warn(warning.stack)
+	console.warn(warning.name)
+	console.warn(warning.message)
+	console.warn(warning.code)
+	console.warn(warning.stack)
 })
 holocServer.on('warning', (warning) => {
-  console.warn(warning.name)
-  console.warn(warning.message)
-  console.warn(warning.code)
-  console.warn(warning.stack)
+	console.warn(warning.name)
+	console.warn(warning.message)
+	console.warn(warning.code)
+	console.warn(warning.stack)
 })

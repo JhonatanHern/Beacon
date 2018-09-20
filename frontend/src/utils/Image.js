@@ -6,21 +6,21 @@ class Image extends Component {
 		this.handleError = this.handleError.bind(this)
 		this.state = { src : 'default.png' }
 		if ( this.props.src ) {
-			fetch('/fn/podcast/getImg',{
+			fetch('/fn/holoc/getImg',{
 				method : 'POST',
 				body : this.props.src
 			})
-			.then(function(response) {
+			.then((response)=> {
 				if(response.ok) {
-					return response.blob()
+					return response.text()
 				}
 				throw new Error('Network error.')
 			})
-			.then(function(myBlob) {
-				var objectURL = URL.createObjectURL(myBlob) 
-				this.setState({ src: objectURL })
+			.then((text)=> {
+				// var objectURL = URL.createObjectURL(myBlob) 
+				this.setState({ src: text })
 			})
-			.catch(function(error) {
+			.catch((error)=> {
 				console.log('There has been a problem with your fetch operation: ', error.message)
 			})
 		}

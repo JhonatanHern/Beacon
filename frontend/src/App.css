@@ -6,6 +6,10 @@ body{
 	background-color: #000;
 }
 
+button:focus{
+	outline: none;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 7px;

@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 
 class MiniProfile extends Component {
-	display(e){
-		e.preventDefault()
+	constructor(props){
+		super(props)
+		this.followProfile = this.followProfile.bind(this)
+	}
+	followProfile(){
+		this.props.follow(this.props.data.Hash)
 	}
 	render() {
 		return (
 			<a className="mini-profile">
 				<div>
 					<span>
-						{this.props.data.name}
+						{this.props.data.Entry.name}
 					</span> 
 					<small>
-						 (@{this.props.data.username})
+						 (@{this.props.data.Entry.username})
 					</small>
 				</div>
-				{this.props.follow && <button onClick={this.props.follow}>follow</button>}
+				{this.props.follow && <button onClick={this.followProfile}>follow</button>}
 			</a>
 		)
 	}

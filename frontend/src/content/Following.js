@@ -9,7 +9,7 @@ class Following extends Component {
 	render() {
     	return (
     		<div>
-    			<h2>Channels</h2>
+    			<h2>Following:</h2>
     			{
     				this.props.data.map((d,i)=>
     					<MiniProfile data={d} key={i}/>

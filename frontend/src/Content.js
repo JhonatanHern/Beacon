@@ -7,8 +7,6 @@ import Followers from './content/Followers.js'
 import Channels  from './content/Channels.js'
 
 class Content extends Component {
-	componentWillReceiveProps(op,np){
-	}
 	render() {
 		let data = null
 		switch(this.props.current){
@@ -21,8 +19,10 @@ class Content extends Component {
 				break
 			case 'myChannel':
 				data = <MyChannel
+						displayNewPlaylistModal={this.props.displayNewPlaylistModal}
 						me={this.props.me}
 						data={this.props.data}
+						viewPlaylist={this.props.viewPlaylist}
 						/>
 				break
 			case 'following':

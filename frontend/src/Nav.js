@@ -29,6 +29,7 @@ class Nav extends Component {
 	          <input type="checkbox" id="nav-check" ref={this.myRef} />
 	          <div className="nav-links">
 	            {
+	            	false &&
 	            	this.props.user &&
 	            	<a onClick={this.handleEvent} data-target='dashboard' >
 	            		Dashboard

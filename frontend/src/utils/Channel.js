@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import Image from '../utils/Image.js'
-import PlaylistDemo from '../utils/PlaylistDemo.js'
+import Image from './Image.js'
+import PlaylistDemo from './PlaylistDemo.js'
 
 class Channel extends Component {
 	render() {

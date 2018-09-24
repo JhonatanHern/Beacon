@@ -279,9 +279,33 @@ function getChannels(){
 }
 
 function getDashboard(argument) {
-  
+  return "  _______  "
+  return "\_(>'-'<)_/"
+  return "   |   |   "
+  return "   |   |   "
+  return "   _____   "
+  return "  _______  "
+  return "   || ||   "
+  return "   || ||   "
+  return "  _|| ||_  "
 }
 
+function newPlaylist(data){
+  var myHash = getMyProfileHash()
+  data.owner = myHash
+  data.tag = []
+  data.created = (new Date()).valueOf()
+  var playlistHash = commit('playlist',data)
+  return commit('link',{
+    Links:[
+      {
+        Link:playlistHash,
+        Tag:'playlist',
+        Base:myHash
+      }
+    ]
+  })
+}
 
 function getFollowing() {
   return JSON.stringify(getLinks( getMyProfileHash() , 'follow' , { Load : true } ))
@@ -289,4 +313,17 @@ function getFollowing() {
 
 function getFollowers() {
   return JSON.stringify(getLinks( getMyProfileHash() , 'follower' , { Load : true } ))
+}
+
+function viewPlaylist(hash) {
+  var r = get( hash )
+  if (r === HC.HashNotFound) {
+    console.log('Entry not found')
+    return '{}'
+  } else {
+    return JSON.stringify(r)
+  }
+}
+function getTracks(hash){
+  return getLinks(hash,'track',{Load:true})
 }

@@ -5,11 +5,9 @@
 body{
 	background-color: #000;
 }
-
 button:focus{
 	outline: none;
 }
-
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
@@ -272,7 +270,7 @@ main{
 	to{transform: scaleY(1);}
 }
 .playlist-demo:not(:focus) button,.playlist-demo:not(:focus) p{
-	display: none;
+	display: block;
 }
 .playlist-demo.active:not(:focus) button,.playlist-demo.active:not(:focus) p{
 	display: block;
@@ -521,16 +519,17 @@ main{
 	height: 50%;
 }
 
-#create-profile-modal{
-	background-color:rgba(0,0,0,.5);
+.modal{
+	background-color:rgba(0,0,0,.9);
 	position:fixed;
 	height:100vh;
 	width:100vw;
 	top:0;
 	left:0;
 	z-index:999999;
+	color: #cddff5;
 }
-#create-profile-modal form{
+.modal form{
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
@@ -545,7 +544,15 @@ main{
 	justify-content: space-around;
 	overflow-x: hidden;
 }
-#create-profile-modal section{
+.modal form.normalize{
+	display: block;
+	padding: 2em;
+}
+.modal form.normalize h2{
+	margin-top: 0;
+	text-align: center;
+}
+.modal section{
 	width: 45%;
 	display: flex;
 	justify-content: center;
@@ -553,7 +560,7 @@ main{
 	position: relative;
 	cursor: n-resize;
 }
-#create-profile-modal div{
+.modal div{
 	width: 45%;
 	position: relative;
 	display: flex;
@@ -561,11 +568,11 @@ main{
 	align-items: center;
 	flex-direction: column;
 }
-#create-profile-modal img{
+.modal img{
 	margin-top: 1em;
 	width: 100%;
 }
-#create-profile-modal form input,#create-profile-modal form textarea{
+.modal form input,.modal form textarea{
 	width: 95%;
 	padding: .4em;
 	font-size: 1.3em;
@@ -574,20 +581,20 @@ main{
 	height: 2.7em;
 }
 @media(max-width: 600px){
-	#create-profile-modal form input,#create-profile-modal form textarea{
+	.modal form input,.modal form textarea{
 		font-size: 1em;
 		margin-top: 1em;
 		height: auto;
 	}	
 }
-#create-profile-modal form textarea{
+.modal form textarea{
 	min-height: 5em;
 	resize: none;
 }
-#create-profile-modal form input:focus,#create-profile-modal form textarea:focus{
+.modal form input:focus,.modal form textarea:focus{
 	border:3px solid #9536f7;
 }
-#create-profile-modal button{
+.modal button{
 	cursor: pointer;
 	border: none;
 	font-size: 1.3em;
@@ -597,4 +604,29 @@ main{
 	color:#fff;
 	transition-duration: .3s;
 	margin-bottom: 5em;
+}
+.generic-button{
+	cursor: pointer;
+	border: none;
+	font-size: 1em;
+	background-color: #9536f7;
+	padding: .4em;
+	border-radius: .8em;
+	color:#fff;
+	transition-duration: .3s;
+	margin-bottom: 1em;
+}
+.absolute-icon{
+	position: fixed;
+	padding: .5em;
+	top: -.2em;
+	left: 100%;
+	transform: translateX(-100%) scaleY(.8);
+	font-weight: bold;
+	font-size: 1.4em;
+	cursor: pointer;
+}
+.absolute-icon:hover{
+	background-color: #333;
+	color: #fff;
 }

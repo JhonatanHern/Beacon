@@ -58,14 +58,14 @@ class Ajax {
 	static readImageBin(file){
 		return new Promise((succ,err)=>{
 			let reader = new FileReader()
-			reader.onload = ()=>{
+			reader.onload = () => {
 				let binData = reader.result
-				succ(binData)
+				succ( binData )
 			}
-			reader.onerror = ()=>{
-				err('Reading error')
+			reader.onerror = () => {
+				err( 'Reading error' )
 			}
-			reader.readAsDataURL(file)
+			reader.readAsDataURL( file )
 		})
 	}
 	static async createProfile({file,username,name,mail,address,description}){
@@ -91,6 +91,15 @@ class Ajax {
 	}
 	static follow(hash){
 		return this.fetchWrapper('follow',hash)
+	}
+	static newPlaylist(data){
+		return this.fetchWrapper('newPlaylist',JSON.stringify(data))
+	}
+	static viewPlaylist(hash){
+		return this.fetchWrapper('viewPlaylist',hash)
+	}
+	static getTracks(hash){
+		return this.fetchWrapper('getTracks',hash)
 	}
 }
 

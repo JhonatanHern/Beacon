@@ -108,6 +108,21 @@
 					"Name": "follow",
 					"CallingType": "string",
 					"Exposure": "public"
+				},
+				{
+					"Name": "newPlaylist",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "viewPlaylist",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getTracks",
+					"CallingType": "string",
+					"Exposure": "public"
 				}
 			]
 		}

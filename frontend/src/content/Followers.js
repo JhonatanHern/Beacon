@@ -14,7 +14,7 @@ class Followers extends Component {
 			followingHashes = this.props.following.map(f=>f.Hash)
     	return (
     		<div>
-    			<h2>Channels</h2>
+    			<h2>Followers:</h2>
     			{
     				this.props.data.filter(d=>followingHashes.includes(d.Hash)).filter(d=>d.Hash!==this.props.me.Hash).map((d)=>
     					<MiniProfile data={d} key={i++} />

@@ -2,12 +2,15 @@
     "title" : "episode Eschema",
     "type" : "object",
     "properties" : {
+        "name":{
+            "type":"integer"
+        },
         "timestamp":{
-            "type":"string"
+            "type":"integer"
         },
         "datalink":{
             "type":"string"
         }
     },
-    "required":["timestamp","datalink"]
+    "required":["name","timestamp","datalink"]
 }

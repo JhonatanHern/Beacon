@@ -14,9 +14,9 @@
         "owner":{
             "type":"string"
         },
-        "createrd":{
-            "type":"string"
+        "created":{
+            "type":"integer"
         }
     },
-    "required":["name","tag","concept","owner","createrd"]
+    "required":["name","tag","concept","owner","created"]
 }

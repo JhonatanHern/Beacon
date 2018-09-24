@@ -67,7 +67,7 @@ class CreateProfileModal extends Component{
 	}
 	render(){
 		return (
-			<section id='create-profile-modal' onClick={this.props.close}>
+			<section className='modal' onClick={this.props.close}>
 				<form onSubmit={e=>{e.preventDefault();e.stopPropagation()}}>
 					<section ref={this.dropZone} htmlFor='imgData' onClick={this.uploadZoneClick}>
 						<Image base64Src={this.state.pictureSrc} onDrop={this.drop}/>

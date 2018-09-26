@@ -64,19 +64,19 @@ class Audio extends Component {
 					console.log('There has been a problem with your fetch operation: ', error.message)
 				})
 			} else {//file in the holochain, this should be a hash
-				fetch('/fn/podcast/getAudio',{
+				fetch('/fn/holoc/getImg',{
 					method : 'POST',
 					body : props.src ? props.src : ''
 				})
 				.then((response) => {
 					if(response.ok) {
-						return response.blob()
+						return response.text()
 					}
 					throw new Error('Network error.')
 				})
-				.then((myBlob) => {
-					var objectURL = URL.createObjectURL(myBlob)
-					this.setState({ src: objectURL })
+				.then((data) => {
+					this.setState({ src: data })
+					this.playClick({preventDefault:()=>{}})
 				})
 				.catch((error) => {
 					console.log('There has been a problem with your fetch operation: ', error.message)

@@ -98,8 +98,25 @@ class Ajax {
 	static viewPlaylist(hash){
 		return this.fetchWrapper('viewPlaylist',hash)
 	}
-	static getTracks(hash){
-		return this.fetchWrapper('getTracks',hash)
+	static getEpisodes(hash){
+		return this.fetchWrapper('getEpisodes',hash,'json')
+	}
+	static async uploadTrack({hash,name,file}){
+		const audioHash = await this.fetchWrapper('saveTrack',file,'text')
+		if (!audioHash) {
+			alert('Error in the file upload') 
+		}
+		return this.fetchWrapper('saveEpisode',JSON.stringify({
+			parentHash:hash,
+			name:name,
+			audioHash:audioHash
+		}),'text')
+	}
+	static getJSONData(hash){
+		return this.fetchWrapper('getJSONData',hash,'json')
+	}
+	static getData(hash){
+		return this.fetchWrapper('getImg',hash)
 	}
 }
 

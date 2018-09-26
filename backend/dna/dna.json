@@ -85,6 +85,11 @@
 					"Exposure": "public"
 				},
 				{
+					"Name": "saveTrack",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
 					"Name": "getChannels",
 					"CallingType": "json",
 					"Exposure": "public"
@@ -120,8 +125,23 @@
 					"Exposure": "public"
 				},
 				{
-					"Name": "getTracks",
+					"Name": "getEpisodes",
 					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getPlaylist",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getJSONData",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "saveEpisode",
+					"CallingType": "json",
 					"Exposure": "public"
 				}
 			]

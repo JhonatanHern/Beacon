@@ -5,6 +5,7 @@ import MyChannel from './content/MyChannel.js'
 import Following from './content/Following.js'
 import Followers from './content/Followers.js'
 import Channels  from './content/Channels.js'
+import Channel  from './utils/Channel.js'
 
 class Content extends Component {
 	render() {
@@ -29,6 +30,7 @@ class Content extends Component {
 				data = <Following
 						me={this.props.me}
 						data={this.props.data}
+						viewProfile={this.props.viewProfile}
 						/>
 				break
 			case 'followers':
@@ -37,6 +39,7 @@ class Content extends Component {
 						me={this.props.me}
 						data={this.props.data}
 						follow={this.props.follow}
+						viewProfile={this.props.viewProfile}
 						/>
 				break
 			case 'channels':
@@ -45,6 +48,15 @@ class Content extends Component {
 						me={this.props.me}
 						data={this.props.data}
 						follow={this.props.follow}
+						viewProfile={this.props.viewProfile}
+						/>
+				break
+			case 'profile':
+				data = <Channel
+						me={this.props.me}
+						data={this.props.data}
+						follow={this.props.follow}
+						viewProfile={this.props.viewProfile}
 						/>
 				break
 			default:

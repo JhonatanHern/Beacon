@@ -16,7 +16,7 @@ class Nav extends Component {
 	    	<nav style={{opacity:this.props.opacity}}>
 	          <div className="nav-header">
 	            <div className="nav-title">
-	              Holo-Casting
+	              Beacon
 	            </div>
 	          </div>
 	          <div className="nav-btn">

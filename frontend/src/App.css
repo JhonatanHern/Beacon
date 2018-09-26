@@ -1,9 +1,13 @@
+
 *{
 	box-sizing: border-box;
 	font-family: 'Century Gothic',CenturyGothic,AppleGothic,sans-serif;
 }
 body{
 	background-color: #000;
+}
+body.light,body.light img{
+	filter: invert(100%);
 }
 button:focus{
 	outline: none;
@@ -526,7 +530,7 @@ main{
 	width:100vw;
 	top:0;
 	left:0;
-	z-index:999999;
+	z-index:199999;
 	color: #cddff5;
 }
 .modal form{
@@ -629,4 +633,41 @@ main{
 .absolute-icon:hover{
 	background-color: #333;
 	color: #fff;
+}
+.high-priority{
+	z-index: 9999999;
+}
+section.upload-audio{
+	padding: .5em;
+	width: 100%;
+	background-image: linear-gradient(90deg,#ddd,#fff,#ddd);
+	color:#9536f7;
+	font-size: 1.4em;
+	margin-bottom: 1em;
+	border: 5px dashed #9536f7;
+}
+section.upload-audio span{
+	text-decoration: underline;
+	margin-right: .4em;
+}
+.hotfix2{
+	width: 100%!important;
+	margin-left: 0!important;
+}
+.hotfix1{
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+div.display-tracks{
+	width: 100%;
+}
+.modal .play-track{
+	width: 100%;
+	display: block;
+	font-size: 1.1em;
+	margin-bottom: .3em;
+	background-color: rgba(255,255,255,.1);
+	padding: .5em;
+	cursor: pointer;
 }

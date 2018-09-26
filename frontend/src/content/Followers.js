@@ -17,12 +17,12 @@ class Followers extends Component {
     			<h2>Followers:</h2>
     			{
     				this.props.data.filter(d=>followingHashes.includes(d.Hash)).filter(d=>d.Hash!==this.props.me.Hash).map((d)=>
-    					<MiniProfile data={d} key={i++} />
+    					<MiniProfile viewProfile={this.props.viewProfile} data={d} key={i++} />
     				)
     			}
     			{
     				this.props.data.filter(d=>!followingHashes.includes(d.Hash)).filter(d=>d.Hash!==this.props.me.Hash).map((d)=>
-    					<MiniProfile data={d} key={i++} follow={this.follow} />
+    					<MiniProfile viewProfile={this.props.viewProfile} data={d} key={i++} follow={this.follow} />
     				)
     			}
     		</div>

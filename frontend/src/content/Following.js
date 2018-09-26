@@ -12,7 +12,7 @@ class Following extends Component {
     			<h2>Following:</h2>
     			{
     				this.props.data.map((d,i)=>
-    					<MiniProfile data={d} key={i}/>
+    					<MiniProfile viewProfile={this.props.viewProfile} data={d} key={i}/>
     				)
     			}
     		</div>

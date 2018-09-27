@@ -149,9 +149,15 @@ class App extends Component {
 		})
 	}
 	async viewProfile(hash){
+		let data = await Ajax.getJSONData(hash)
 		this.setState({
-			data : await Ajax.getJSONData(hash),
+			data : data,
 			current : 'profile'
+		})
+		data = JSON.parse(JSON.stringify(data))
+		data.playlists = await Ajax.getPlaylists(hash)
+		this.setState({
+			data:data
 		})
 	}
 	render() {
@@ -170,7 +176,7 @@ class App extends Component {
 					viewPlaylist={this.viewPlaylist}
 					viewProfile={this.viewProfile}
 					/>
-				<Audio src={this.state.audioSrc}/>
+				<Audio src={this.state.audioSrc} ar={this.state.audioReplay}/>
 				{
 					this.state.displayCreateProfileModal &&
 					<CreateProfileModal close={this.closeModal} done={this.submitProfile}/>
@@ -191,7 +197,7 @@ class App extends Component {
 						tracklist={this.state.currentTracklist || []}
 						close={this.closePlaylist}
 						mine={this.state.currentPlaylist.data.owner===this.state.me.Hash}
-						play={hash=>this.setState({audioSrc:hash})}
+						play={hash=>this.setState({audioSrc:hash,audioReplay:Math.random()})}
 						/>
 				}
 			</div>

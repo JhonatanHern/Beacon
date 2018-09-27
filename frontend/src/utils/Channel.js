@@ -24,9 +24,9 @@ class Channel extends Component {
 	    		<div>
 	    			<h4>Playlists:</h4>
 	    			{
-	    				(this.props.playLists && this.props.playLists.length) ?
-		    				this.props.playLists.map((p,i)=>(
-		    					<PlaylistDemo key={i} data={p} />
+	    				(this.props.data.playlists && this.props.data.playlists.length) ?
+		    				this.props.data.playlists.map((p,i)=>(
+		    					<PlaylistDemo key={i} data={p} viewPlaylist={this.props.viewPlaylist}/>
 		    				))
 		    			:
 		    				<h5>No playlists available</h5>

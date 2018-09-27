@@ -25,6 +25,7 @@ class Audio extends Component {
 
 		this.updateSrc = this.updateSrc.bind(this)
 		this.playClick = this.playClick.bind(this)
+		this.play = this.play.bind(this)
 		this.setTime = this.setTime.bind(this)
 		this.handleEnd = this.handleEnd.bind(this)
 		this.updateBar = this.updateBar.bind(this)
@@ -76,7 +77,8 @@ class Audio extends Component {
 				})
 				.then((data) => {
 					this.setState({ src: data })
-					this.playClick({preventDefault:()=>{}})
+					this.play()
+					//this.playClick({preventDefault:()=>{}})
 				})
 				.catch((error) => {
 					console.log('There has been a problem with your fetch operation: ', error.message)
@@ -128,9 +130,13 @@ class Audio extends Component {
 		}
 	}
 	componentDidUpdate(pp){
-		if (pp.src === this.props.src)
+		if (pp.src === this.props.src && pp.ar === this.props.ar)
 			return
 		this.updateSrc(false)
+	}
+	play(){
+		this.audioRef.current.play()
+		this.setState({play:true})
 	}
 	playClick(e){
 		e.preventDefault()

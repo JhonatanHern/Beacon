@@ -130,7 +130,7 @@
 					"Exposure": "public"
 				},
 				{
-					"Name": "getPlaylist",
+					"Name": "getPlaylists",
 					"CallingType": "string",
 					"Exposure": "public"
 				},

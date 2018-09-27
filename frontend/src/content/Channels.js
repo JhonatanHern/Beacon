@@ -11,7 +11,7 @@ class Channels extends Component {
 	}
 	render() {
 		let i = 0,//counter
-			followingHashes = this.props.following.map(f=>f.Hash)
+			followingHashes = (this.props.following || []).map(f=>f.Hash)
     	return (
     		<div>
     			<h2>Channels</h2>

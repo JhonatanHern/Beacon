@@ -57,6 +57,7 @@ class Content extends Component {
 						data={this.props.data}
 						follow={this.props.follow}
 						viewProfile={this.props.viewProfile}
+						viewPlaylist={this.props.viewPlaylist}
 						/>
 				break
 			default:

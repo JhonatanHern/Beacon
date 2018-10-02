@@ -65,19 +65,23 @@ class Audio extends Component {
 					console.log('There has been a problem with your fetch operation: ', error.message)
 				})
 			} else {//file in the holochain, this should be a hash
-				fetch('/fn/holoc/getImg',{
+				fetch('/fn/holoc/getTrack',{
 					method : 'POST',
 					body : props.src ? props.src : ''
 				})
 				.then((response) => {
 					if(response.ok) {
-						return response.text()
+						return response.json()
 					}
 					throw new Error('Network error.')
 				})
 				.then((data) => {
-					this.setState({ src: data })
-					this.play()
+					data.sort( ( a , b ) => a.index - b.index )
+					const fd = data.map(b=>b.data).join('')
+					// console.log(d)
+					console.log('final length: ' + fd.length)
+					this.setState({ src: fd })
+					setTimeout(()=>this.play(),100)
 					//this.playClick({preventDefault:()=>{}})
 				})
 				.catch((error) => {
@@ -153,7 +157,7 @@ class Audio extends Component {
 	setTime(e){
 		e.preventDefault()
 		const iw = window.innerWidth
-		let barWidth = iw - 150
+		let barWidth = iw - 100
 		barWidth -= barWidth * 0.025
 		let clickWidth = e.clientX - 50 - barWidth * 0.0125
 		let proportion = clickWidth / barWidth
@@ -191,9 +195,6 @@ class Audio extends Component {
 							</div>
 						</div>
 					</div>
-				</span>
-				<span id='download' title="download" onClick={this.download}>
-					<small/>
 				</span>
 			</section>
 		)

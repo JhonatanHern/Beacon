@@ -29,17 +29,17 @@ class MyChannels extends Component {
 					{
 						(this.props.me.myPlaylists && this.props.me.myPlaylists.length) ?
 							<React.Fragment>
-								<h4>Playlists:</h4>
+								<h4>Albums:</h4>
 								<button className='generic-button' onClick={e=>this.props.displayNewPlaylistModal(true)}>
-									New Playlist!
+									New Album!
 								</button>
 								{this.props.me.myPlaylists.map((p,i)=>(<PlaylistDemo key={i} data={p} viewPlaylist={this.props.viewPlaylist}/>))}
 							</React.Fragment>
 						:
 							<React.Fragment> 
-								<h5>You have no playlists yet</h5>
+								<h5>You have no albums yet</h5>
 								<button className='generic-button' onClick={e=>this.props.displayNewPlaylistModal(true)}>
-									Create your first Playlist!
+									Create your first album!
 								</button>
 							</React.Fragment>
 					}

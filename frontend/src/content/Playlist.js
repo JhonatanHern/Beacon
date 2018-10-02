@@ -16,7 +16,7 @@ const Playlist = props => (
 			{
 				props.tracklist.length ?
 					<React.Fragment>
-						<h4>Tracks:</h4>
+						<h4>Songs:</h4>
 						{Array.from(props.tracklist).map((e,i)=>(
 							<div className='play-track' key={i} onClick={ev=>props.play(e.Entry.datalink)}>
 								<span role="img" aria-label="play button">▶️</span> { e.Entry.name }
@@ -28,20 +28,20 @@ const Playlist = props => (
 								style={{fontSize:'1em'}}
 								onClick={()=>props.addAudio(props.data.hash)}
 								>
-								Add Audio
+								Add Song
 							</button>
 						}
 					</React.Fragment>
 				:
 					<React.Fragment>
-						<h4>No tracks found</h4>
+						<h4>No songs found</h4>
 						{
 							props.mine &&
 							<button
 								style={{fontSize:'1em'}}
 								onClick={()=>props.addAudio(props.data.hash)}
 								>
-								Add first audio
+								Add first song
 							</button>
 						}
 					</React.Fragment>

@@ -53,7 +53,7 @@
 				},
 				{
 					"Name": "track",
-					"DataFormat": "string",
+					"DataFormat": "json",
 					"Sharing": "public"
 				},
 				{
@@ -86,6 +86,11 @@
 				},
 				{
 					"Name": "saveTrack",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getTrack",
 					"CallingType": "string",
 					"Exposure": "public"
 				},

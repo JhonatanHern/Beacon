@@ -48,3 +48,8 @@ holocServer.on('warning', (warning) => {
 	console.warn(warning.code)
 	console.warn(warning.stack)
 })
+
+process.on('exit',()=>{
+	holocServer.kill('SIGHUP')
+	reactServer.kill('SIGHUP')
+})

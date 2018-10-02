@@ -22,14 +22,14 @@ class Channel extends Component {
 	    			<p>{this.props.data.description}</p>
 	    		</div>
 	    		<div>
-	    			<h4>Playlists:</h4>
+	    			<h4>Albums:</h4>
 	    			{
 	    				(this.props.data.playlists && this.props.data.playlists.length) ?
 		    				this.props.data.playlists.map((p,i)=>(
 		    					<PlaylistDemo key={i} data={p} viewPlaylist={this.props.viewPlaylist}/>
 		    				))
 		    			:
-		    				<h5>No playlists available</h5>
+		    				<h5>No albums available</h5>
 	    			}
 	    		</div>
     		</div>

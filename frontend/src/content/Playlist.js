@@ -1,5 +1,6 @@
 import React from 'react'
 import FormModal from '../utils/FormModal.js'
+import Track from '../utils/Track.js'
 
 const prettifyDate = date =>{
 	const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -18,9 +19,7 @@ const Playlist = props => (
 					<React.Fragment>
 						<h4>Songs:</h4>
 						{Array.from(props.tracklist).map((e,i)=>(
-							<div className='play-track' key={i} onClick={ev=>props.play(e.Entry.datalink)}>
-								<span role="img" aria-label="play button">▶️</span> { e.Entry.name }
-							</div>
+							<Track data={e} play={props.play} key={i}/>
 						))}
 						{
 							props.mine &&

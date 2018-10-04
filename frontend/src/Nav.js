@@ -31,32 +31,32 @@ class Nav extends Component {
 	            {
 	            	false &&
 	            	this.props.user &&
-	            	<a onClick={this.handleEvent} data-target='dashboard' >
+	            	<a href='/' onClick={this.handleEvent} data-target='dashboard' >
 	            		Dashboard
 	            	</a>
 	            }
 	            {
 	            	this.props.user &&
-	            	<a onClick={this.handleEvent} data-target='myChannel' >
+	            	<a href='/' onClick={this.handleEvent} data-target='myChannel' >
 	            		My Channel
 	            	</a>
 	            }
 	            {
 	            	!this.props.user &&
-	            	<a onClick={this.handleEvent} data-target='createChannel' >
+	            	<a href='/' onClick={this.handleEvent} data-target='createChannel' >
 	            		Create Channel
 	            	</a>
 	            }
 	            {
 	            	this.props.user &&
-	            	<a onClick={this.handleEvent} data-target='following' >Following    </a>
+	            	<a href='/' onClick={this.handleEvent} data-target='following' >Following    </a>
 	            }
 
 	            {
 	            	this.props.user &&
-	            	<a onClick={this.handleEvent} data-target='followers' >Followers    </a>
+	            	<a href='/' onClick={this.handleEvent} data-target='followers' >Followers    </a>
 	            }
-	            <a onClick={this.handleEvent} data-target='channels'  >Search People</a>
+	            <a href='/' onClick={this.handleEvent} data-target='channels'  >Search People</a>
 	          </div>
 	        </nav>
         )

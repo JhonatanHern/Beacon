@@ -7,7 +7,7 @@ const PlaylistDemo = (props) => (
 				props.data.user.username &&
 				<h4 style={{margin:'0'}}>@{props.data.user.username} posted:</h4>
 			}
-			<a>{props.data.Entry.name}</a>
+			<a href='/' onClick={e=>e.preventDefault()}>{props.data.Entry.name}</a>
 			<p>
 				{props.data.Entry.concept}
 			</p>

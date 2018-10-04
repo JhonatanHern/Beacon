@@ -153,7 +153,7 @@ function saveTrack(track) {
 	return songHash
 }
 function getTrack(hash){
-	console.log('required: ' + hash)
+	// console.log('required: ' + hash)
 	var links = getLinks(hash,'track',{Load:true})
 	console.log(links.length + ' blocks loaded')
 	var res = '['
@@ -238,4 +238,24 @@ function getPlaylists(hash){
 }
 function getJSONData(hash){
 	return JSON.stringify(get(hash))
+}
+function getComments(hash) {
+	return JSON.stringify(getLinks(hash,'comment',{Load:true}))
+}
+function comment(data) {
+	var myProfile = getMyProfile()
+	var hash = commit('comment',{
+        "fromAddress" : myProfile.Hash,
+        "timestamp"   : (new Date()).valueOf(),
+		"from"        : myProfile.Entry.username,
+        "text"        : data.text,
+        "rank"        : data.rank
+	})
+	return commit('link',{
+		Links:[{
+			Tag:'comment',
+			Base:data.base,
+			Link:hash
+		}]
+	})
 }

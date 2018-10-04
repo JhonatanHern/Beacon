@@ -1,7 +1,7 @@
 import React from 'react'
 
 const MiniProfile = props => (
-	<a className="mini-profile">
+	<a href='/' onClick={e=>e.preventDefault()} className="mini-profile">
 		<div>
 			<span onClick={e=>props.viewProfile(props.data.Hash)}>
 				{props.data.Entry.name}

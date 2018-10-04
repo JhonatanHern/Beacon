@@ -1,0 +1,22 @@
+{
+    "title" : "comment Eschema",
+    "type" : "object",
+    "properties" : {
+        "from":{
+            "type":"string"
+        },
+        "fromAddress":{
+            "type":"string"
+        },
+        "text":{
+            "type":"string"
+        },
+        "rank":{
+            "type":"integer"
+        },
+        "timestamp":{
+            "type":"integer"
+        }
+    },
+    "required":["from","fromAddress","text","rank","timestamp"]
+}

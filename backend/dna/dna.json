@@ -66,6 +66,12 @@
 					"Name": "link",
 					"DataFormat": "links", 
 					"Sharing": "public"
+				},
+				{
+					"Name": "comment",
+					"DataFormat": "json", 
+					"Sharing": "public",
+					"SchemaFile":"comment.json"
 				}
 			],
 			"Functions": [
@@ -146,6 +152,16 @@
 				},
 				{
 					"Name": "saveEpisode",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "getComments",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "comment",
 					"CallingType": "json",
 					"Exposure": "public"
 				}

@@ -1,8 +1,12 @@
 
-*{
+// $purple : #8024de;
+$purple : #8024de;
+
+* {
 	box-sizing: border-box;
 	font-family: 'Century Gothic',CenturyGothic,AppleGothic,sans-serif;
 }
+a{text-decoration: none;color: inherit;}
 body{
 	background-color: #000;
 }
@@ -26,16 +30,16 @@ button:focus{
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #8024de; 
+    background: $purple; 
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    box-shadow: 0 0 15px #8024de; 
+    box-shadow: 0 0 15px $purple; 
 }
 img{
-	border: 3px solid #8024de;
+	border: 3px solid $purple;
 }
 nav {
 	background-color: #000;
@@ -177,8 +181,8 @@ nav > #nav-check {
 	border: 1px solid #adbff5;
 	border-bottom-color : transparent;
 	border-left-color : transparent;
-	border-right-color : #8024de;
-	border-top-color : #8024de;
+	border-right-color : $purple;
+	border-top-color : $purple;
 	animation: fadeInHalf 4s;
 	transition-duration: 2s;
 	display: inline-block;
@@ -671,4 +675,88 @@ div.display-tracks{
 	background-color: rgba(255,255,255,.1);
 	padding: .5em;
 	cursor: pointer;
+}
+.modal .play-track span{
+	display: inline;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.modal .play-track div{
+	width: 100%;
+	text-align: left;
+	position: relative;
+}
+.modal .play-track div:hover small{
+	text-decoration: underline;
+}
+.modal .play-track small{
+	font-size: 1em;
+	width: 100%;
+	text-align: left;
+	padding-left: 2em;
+}
+.modal .play-track a{
+	font-size: .8em;
+}
+.modal .play-track a:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.modal section.comment-panel{
+	display: flex;
+	width: 100%;
+	position: relative;
+	flex-direction: column;
+	cursor: auto;
+}
+.modal section.comment-panel textarea{
+	margin:.5em 0 0 0;
+	width: 100%;
+	font-size: .8em;
+}
+.modal section.comment-panel button{
+	margin-bottom: 0;
+	font-size: 1em;
+	position: relative;
+	top: 0;
+}
+.modal section.comment-panel small{
+	padding-left: 0;
+	height: auto;
+}
+.modal .star{
+	height: 1em;
+	width: 1em;
+	display: inline;
+	border:none;
+	filter:  saturate(0);
+	margin-left: .4em;
+}
+.modal div.butt-container{
+	position: relative;
+	width: 100%;
+	display: block;
+}
+.modal div.butt-container button{
+	left: 100%;
+	position: relative;
+	transform: translateX(-100%);
+}
+.comments-list > div{
+	width: 100%;
+	display: block;
+}
+.modal img.star-demo{
+	margin-top: 0;
+	border:none;
+	height: 1em;
+	width: 1em;
+	display: inline;
+}
+.modal div.star-holder{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1em;
+	justify-content: flex-start;
 }

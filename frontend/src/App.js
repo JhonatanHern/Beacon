@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './App.css'
+import './App.scss'
 import Nav from './Nav.js'
 import Content from './Content.js'
 import Triangles from './Triangles.js'//visual effects in the background
@@ -23,7 +23,6 @@ class App extends Component {
 			current : '' ,
 			me : null
 		}
-
 		this.follow                  = this.follow.bind( this )
 		this.addAudio                = this.addAudio.bind( this )
 		this.closeModal              = this.closeModal.bind( this )

@@ -1,0 +1,13 @@
+{
+    "title" : "Petition Eschema",
+    "type" : "object",
+    "properties" : {
+        "user":{
+            "type":"string"
+        },
+        "timestamp":{
+            "type":"integer"
+        }
+    },
+    "required":["user","timestamp"]
+}

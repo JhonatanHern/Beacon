@@ -5,7 +5,6 @@ var APP_ID = App.DNA.Hash,
 	ME = App.Key.Hash
 
 
-
 /*******************************************************************************
  * Utility functions
  ******************************************************************************/
@@ -258,4 +257,51 @@ function comment(data) {
 			Link:hash
 		}]
 	})
+}
+
+function action(params) {
+	var hash = commit('action',{
+		tymestamp : ( new Date() ).valueOf(),
+		moment    : Number( params.moment ),
+		type      : params.type
+	})
+	var linkHash = commit('link',{
+		Links:[
+			{
+				Link : hash,
+				Base : param.petitionHash,
+				tag  : 'action'
+			}
+		]
+	})
+}
+function petition(episodeHash) {
+	var hash = commit('petition',{
+		user : getMyProfileHash(),
+		timestamp : (new Date()).valueOf()
+	})
+	console.log('petition created')
+	console.log(hash)
+	var linkHash = commit('link',{
+		Links:[
+			{
+				Link : hash,
+				Base : episodeHash,
+				Tag  : 'petition'
+			}
+		]
+	})
+	//Now we have to push one more link in order to access the petitions
+	//from the user's point of view. Like some sort of "history"
+	commit('p_link',{
+		Links:[{
+			Link : linkHash,
+			Base : ME,
+			Tag  : 'history'
+		}]
+	})
+	return hash
+}
+function getMyHistory() {
+	return getLinks(ME,'history',{Load:true})
 }

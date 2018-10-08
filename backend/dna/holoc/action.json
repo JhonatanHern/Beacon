@@ -1,0 +1,16 @@
+{
+    "title" : "Action Eschema",
+    "type" : "object",
+    "properties" : {
+        "type":{
+            "type":"string"
+        },
+        "timestamp":{
+            "type":"integer"
+        },
+        "percentage":{
+            "type":"integer"
+        }
+    },
+    "required":["type","timestamp","moment"]
+}

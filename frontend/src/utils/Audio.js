@@ -32,12 +32,26 @@ class Audio extends Component {
 		this.download = this.download.bind(this)
 		this.volumeClick = this.volumeClick.bind(this)
 		this.state = {
-			play:false,
-			progress:0,
-			volume:.9
+			petitionHash : null ,
+			progress : 0 ,
+			volume : .9 ,
+			play : false
 		}
 		this.updateSrc(true)
 		setInterval(this.updateBar,300)
+	}
+	async sendPetition(){
+		const response = await fetch('/fn/holoc/petition',{
+			method:'POST',
+			body:this.props.src
+		})
+		if (!response.ok) {
+			console.log('response failed:',response)
+			return
+		}
+		const resData = await response.text()
+		console.log( 'petition hash:' , resData )
+		this.setState({ petitionHash : resData })
 	}
 	updateBar(){
 		if (this.audioRef.current) {
@@ -78,11 +92,10 @@ class Audio extends Component {
 				.then((data) => {
 					data.sort( ( a , b ) => a.index - b.index )
 					const fd = data.map(b=>b.data).join('')
-					// console.log(d)
 					console.log('final length: ' + fd.length)
 					this.setState({ src: fd })
 					setTimeout(()=>this.play(),100)
-					//this.playClick({preventDefault:()=>{}})
+					this.sendPetition()//starts tracking
 				})
 				.catch((error) => {
 					console.log('There has been a problem with your fetch operation: ', error.message)

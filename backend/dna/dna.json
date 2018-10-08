@@ -63,15 +63,32 @@
 					"SchemaFile": "tag.json"
 				},
 				{
+					"Name": "comment",
+					"DataFormat": "json", 
+					"Sharing": "public",
+					"SchemaFile":"comment.json"
+				},
+				{
+					"Name": "action",
+					"DataFormat": "json", 
+					"Sharing": "public",
+					"SchemaFile":"action.json"
+				},
+				{
+					"Name": "petition",
+					"DataFormat": "json", 
+					"Sharing": "public",
+					"SchemaFile":"petition.json"
+				},
+				{
 					"Name": "link",
 					"DataFormat": "links", 
 					"Sharing": "public"
 				},
 				{
-					"Name": "comment",
-					"DataFormat": "json", 
-					"Sharing": "public",
-					"SchemaFile":"comment.json"
+					"Name": "p_link",
+					"DataFormat": "links", 
+					"Sharing": "private"
 				}
 			],
 			"Functions": [
@@ -163,6 +180,16 @@
 				{
 					"Name": "comment",
 					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "action",
+					"CallingType": "json",
+					"Exposure": "public"
+				},
+				{
+					"Name": "petition",
+					"CallingType": "string",
 					"Exposure": "public"
 				}
 			]

@@ -2,24 +2,24 @@
     "title": "Profile Schema",
     "type": "object",
     "properties": {
-	"name": {
-	    "type": "string"
-	},
-	"username": {
-	    "type": "string"
-	},
-	"mail": {
-		"type": "string"
-	},
-	"description": {
-		"type": "string"
-	},
-	"address": {
-		"type": "string"
-	},
-	"profilepic": {
-		"type": "string"
-    }
+		"name": {
+		    "type": "string"
+		},
+		"username": {
+		    "type": "string"
+		},
+		"mail": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"address": {
+			"type": "string"
+		},
+		"profilepic": {
+			"type": "string"
+	    }
 	},
     "required": ["name","username","mail","description","address"]
 }

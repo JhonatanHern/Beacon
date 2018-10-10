@@ -55,6 +55,9 @@ class Ajax {
 	static getChannels(data){
 		return this.fetchWrapper('getChannels',data,'json')
 	}
+	static getSettings(){
+		return new Promise((succ,e)=>succ())
+	}
 	static readImageBin(file){
 		return new Promise((succ,err)=>{
 			let reader = new FileReader()

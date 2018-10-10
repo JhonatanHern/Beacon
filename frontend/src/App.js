@@ -20,7 +20,7 @@ class App extends Component {
 			displayNewPlaylistModal : false ,
 			following : [] ,
 			opacity : '1' ,
-			current : '' ,
+			current : 'beacon' ,
 			me : null
 		}
 		this.follow                  = this.follow.bind( this )

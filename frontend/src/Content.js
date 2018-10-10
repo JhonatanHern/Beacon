@@ -5,7 +5,9 @@ import MyChannel from './content/MyChannel.js'
 import Following from './content/Following.js'
 import Followers from './content/Followers.js'
 import Channels  from './content/Channels.js'
-import Channel  from './utils/Channel.js'
+import Settings  from './content/Settings.js'
+import Channel   from './utils/Channel.js'
+import Beacon    from './content/Beacon.js'
 
 class Content extends Component {
 	render() {
@@ -58,6 +60,15 @@ class Content extends Component {
 						follow={this.props.follow}
 						viewProfile={this.props.viewProfile}
 						viewPlaylist={this.props.viewPlaylist}
+						/>
+				break
+			case 'beacon':
+				data = <Beacon me={this.props.me}/>
+				break
+			case 'settings':
+				data = <Settings
+						data={this.props.data}
+						me={this.props.me}
 						/>
 				break
 			default:

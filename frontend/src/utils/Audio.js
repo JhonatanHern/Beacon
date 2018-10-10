@@ -23,21 +23,22 @@ class Audio extends Component {
 
 		this.audioRef = React.createRef()
 
-		this.updateSrc = this.updateSrc.bind(this)
-		this.playClick = this.playClick.bind(this)
-		this.play = this.play.bind(this)
-		this.setTime = this.setTime.bind(this)
-		this.handleEnd = this.handleEnd.bind(this)
-		this.updateBar = this.updateBar.bind(this)
-		this.download = this.download.bind(this)
-		this.volumeClick = this.volumeClick.bind(this)
+		this.play         = this.play.bind(this)
+		this.setTime      = this.setTime.bind(this)
+		this.updateSrc    = this.updateSrc.bind(this)
+		this.playClick    = this.playClick.bind(this)
+		this.handleEnd    = this.handleEnd.bind(this)
+		this.updateBar    = this.updateBar.bind(this)
+		this.volumeClick  = this.volumeClick.bind(this)
+		this.notifyPause  = this.notifyPause.bind(this)
+		this.sendPetition = this.sendPetition.bind(this)
 		this.state = {
 			petitionHash : null ,
 			progress : 0 ,
 			volume : .9 ,
 			play : false
 		}
-		this.updateSrc(true)
+		this.updateSrc( true )
 		setInterval(this.updateBar,300)
 	}
 	async sendPetition(){
@@ -109,43 +110,6 @@ class Audio extends Component {
         a.download = "track.mp3"
         a.click()
 	}
-	download(){
-		let props = this.props
-		if ( props.src ) {
-			if (/\.mp3$/.test(this.props.src)) {//simple file
-				fetch(props.src)
-				.then((response) => {
-					if(response.ok) {
-						return response.blob()
-					}
-					throw new Error('Network error.')
-				})
-				.then((myBlob) => {
-					this.downloadBlob(myBlob)
-				})
-				.catch((error) => {
-					console.log('There has been a problem with your fetch operation: ', error.message)
-				})
-			} else {//file in the holochain, this should be a hash
-				fetch('/fn/podcast/getAudio',{
-					method : 'POST',
-					body : props.src ? props.src : ''
-				})
-				.then((response) => {
-					if(response.ok) {
-						return response.blob()
-					}
-					throw new Error('Network error.')
-				})
-				.then((myBlob) => {
-					this.downloadBlob(myBlob)
-				})
-				.catch((error) => {
-					console.log('There has been a problem with your fetch operation: ', error.message)
-				})
-			}
-		}
-	}
 	componentDidUpdate(pp){
 		if (pp.src === this.props.src && pp.ar === this.props.ar)
 			return
@@ -155,9 +119,26 @@ class Audio extends Component {
 		this.audioRef.current.play()
 		this.setState({play:true})
 	}
+	async notifyPause(){
+		const response = await fetch('/fn/holoc/action',{
+			method : 'POST',
+			body : JSON.stringify({
+				petitionHash : this.state.petitionHash,
+				moment : Math.floor((this.audioRef.current.currentTime*100)/this.audioRef.current.duration),
+				type : 'pause'
+			})
+		})
+		if (!response.ok) {
+			console.log('response failed:',response)
+			return
+		}
+		const resData = await response.text()
+		console.log(resData)
+	}
 	playClick(e){
 		e.preventDefault()
 		if (this.state.play) {
+			this.notifyPause()
 			this.audioRef.current.pause()
 		} else {
 			this.audioRef.current.play()

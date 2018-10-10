@@ -1,17 +1,25 @@
-
-// $purple : #8024de;
 $purple : #8024de;
 
 * {
 	box-sizing: border-box;
 	font-family: 'Century Gothic',CenturyGothic,AppleGothic,sans-serif;
 }
-a{text-decoration: none;color: inherit;}
+a{
+	text-decoration: none;
+	color: inherit;
+}
 body{
 	background-color: #000;
 }
-body.light,body.light img{
-	filter: invert(100%);
+input[type="radio"]{
+	transform: scale(1.4) translateY(1px);
+}
+body.light{
+	filter: invert(90%) hue-rotate(90deg);
+}
+body.light img{
+	filter: invert(90%) hue-rotate(270deg);
+	border: 3px solid pink;
 }
 button:focus{
 	outline: none;
@@ -759,4 +767,39 @@ div.display-tracks{
 	flex-direction: row;
 	margin-bottom: 1em;
 	justify-content: flex-start;
+}
+.beacon-front > img{
+	width: 100%;
+	border: none;
+}
+@media(min-width: 700px){
+	.beacon-front > img{
+		width: 60%;
+		margin-left: 20%;
+	}	
+}
+#settings{
+	display: flex;
+	justify-content: space-around;
+}
+#settings > aside{
+	width: 20%;
+	border: 1px solid rgba(255,255,255,.4);
+	padding-bottom: 2em;
+}
+#settings > aside h3{
+	text-align: center;
+}
+#settings > aside a{
+	display: block;
+	text-align: center;
+	padding: .4em;
+}
+#settings > aside a:hover{
+	text-decoration: underline;
+}
+#settings > section{
+	padding: 1em;
+	width: 70%;
+	border: 1px solid rgba(255,255,255,.4);
 }

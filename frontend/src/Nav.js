@@ -57,7 +57,7 @@ class Nav extends Component {
 				}
 				{
 					this.props.user &&
-					<a href='/' onClick={this.handleEvent} data-target='statistics' >Statistics  </a>
+					<a href='/' onClick={this.handleEvent} data-target='settings' >Settings  </a>
 				}
 				<a href='/' onClick={this.handleEvent} data-target='channels'  >Search People</a>
 			  </div>

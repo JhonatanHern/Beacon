@@ -258,10 +258,9 @@ function comment(data) {
 		}]
 	})
 }
-
 function action(params) {
 	var hash = commit('action',{
-		tymestamp : ( new Date() ).valueOf(),
+		timestamp : ( new Date() ).valueOf(),
 		moment    : Number( params.moment ),
 		type      : params.type
 	})
@@ -269,19 +268,18 @@ function action(params) {
 		Links:[
 			{
 				Link : hash,
-				Base : param.petitionHash,
-				tag  : 'action'
+				Base : params.petitionHash,
+				Tag  : 'action'
 			}
 		]
 	})
+	return linkHash
 }
 function petition(episodeHash) {
 	var hash = commit('petition',{
 		user : getMyProfileHash(),
 		timestamp : (new Date()).valueOf()
 	})
-	console.log('petition created')
-	console.log(hash)
 	var linkHash = commit('link',{
 		Links:[
 			{

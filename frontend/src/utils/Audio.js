@@ -44,7 +44,7 @@ class Audio extends Component {
 	async sendPetition(){
 		const response = await fetch('/fn/holoc/petition',{
 			method:'POST',
-			body:this.props.src
+			body:this.props.songHash
 		})
 		if (!response.ok) {
 			console.log('response failed:',response)

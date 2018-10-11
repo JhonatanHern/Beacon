@@ -67,7 +67,7 @@ class Track extends React.Component{
 	render(){
 		return (
 			<div className='play-track'>
-				<div onClick={ev=>this.props.play(this.props.data.Entry.datalink)}>
+				<div onClick={ev=>this.props.play(this.props.data.Entry.datalink,this.props.data.Hash)}>
 					<span role="img" aria-label="play button">▶️</span>
 					<small>{ this.props.data.Entry.name }</small>
 				</div>
@@ -76,7 +76,9 @@ class Track extends React.Component{
 						<div className='comments-list'>
 							{this.state.comments.map((c,i)=>(
 								<div key={i}>
-									<a href="">{c.Entry.from}</a>
+									<a href="/" onClick={e=>e.preventDefault()}>
+										{c.Entry.from}
+									</a>
 									<br/>
 									{c.Entry.text}
 									<br/>

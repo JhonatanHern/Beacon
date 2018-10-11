@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Ajax from '../Ajax.js'
+import Track from '../utils/Track.js'
 
 class Settings extends Component {
 	constructor(props){
 		super( props )
-		this.state = {current:'Configuration'}
+		this.state = {current:'Configuration',theme:'dark'}
 		this.change = this.change.bind(this)
 	}
 	theme(e){
@@ -12,9 +13,14 @@ class Settings extends Component {
 		// e.target.checked = 'true'
 		document.body.className = e.target.getAttribute('data')
 	}
-	change(e){
+	async change(e){
 		e.preventDefault()
-		this.setState({current:e.target.getAttribute('data')})
+		const target = e.target.getAttribute('data')
+		if ( target === 'History' ) {
+			const history = await Ajax.getHistory()
+			this.setState({history:history})
+		}
+		this.setState({current:target})
 	}
 	render() {
 		return (
@@ -31,16 +37,22 @@ class Settings extends Component {
 						<div className="silver-box">
 							Theme:
 							<br/>
-							Dark <input onChange={this.theme} data="dark" type="radio" name="theme" defaultChecked="true"/>
+							Dark <input onChange={this.theme} data="dark" type="radio" name="theme" defaultChecked={document.body.className==='dark'&&true}/>
 							<br/>
-							Light <input onChange={this.theme} data="light" type="radio" name="theme"/>
+							Light <input onChange={this.theme} data="light" type="radio" name="theme" defaultChecked={document.body.className==='light'&&true}/>
 						</div>
 					</section>
 					<section style={{display:this.state.current==="Statistics"?'block':'none'}}>
 						<h2>Statistics</h2>
 					</section>
-					<section style={{display:this.state.current==="History"?'block':'none'}}>
+					<section className="track-holder" style={{display:this.state.current==="History"?'block':'none'}}>
 						<h2>History</h2>
+						{
+							this.state.history &&
+							this.state.history.map((e,i)=>
+								<Track data={e} play={this.props.play} key={i}/>
+							)
+						}
 					</section>
 				</section>
 			</div>

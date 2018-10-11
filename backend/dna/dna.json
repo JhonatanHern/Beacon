@@ -191,6 +191,11 @@
 					"Name": "petition",
 					"CallingType": "string",
 					"Exposure": "public"
+				},
+				{
+					"Name": "getMyHistory",
+					"CallingType": "string",
+					"Exposure": "public"
 				}
 			]
 		}

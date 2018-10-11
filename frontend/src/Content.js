@@ -68,6 +68,7 @@ class Content extends Component {
 			case 'settings':
 				data = <Settings
 						data={this.props.data}
+						play={this.props.play}
 						me={this.props.me}
 						/>
 				break

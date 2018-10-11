@@ -3,13 +3,6 @@
 */
 var APP_ID = App.DNA.Hash,
 	ME = App.Key.Hash
-
-
-/*******************************************************************************
- * Utility functions
- ******************************************************************************/
-
-
 /**
  * Is this a valid entry type?
  *
@@ -146,9 +139,7 @@ function saveTrack(track) {
 			Tag:'track',
 			Link:src
 		}]})
-		console.log((100*(i/array.length))+'%')
 	})
-	console.log('result: ' + songHash)
 	return songHash
 }
 function getTrack(hash){
@@ -293,7 +284,7 @@ function petition(episodeHash) {
 	//from the user's point of view. Like some sort of "history"
 	commit('p_link',{
 		Links:[{
-			Link : linkHash,
+			Link : episodeHash,
 			Base : ME,
 			Tag  : 'history'
 		}]
@@ -301,5 +292,10 @@ function petition(episodeHash) {
 	return hash
 }
 function getMyHistory() {
-	return getLinks(ME,'history',{Load:true})
+	var links = getLinks( ME , 'history' , { Load : true } )
+	// links.forEach(function(link) {
+	// 	link.data = get(link.Entry.Links[0].Link)
+	// })
+	// debug(links)
+	return JSON.stringify(links)
 }

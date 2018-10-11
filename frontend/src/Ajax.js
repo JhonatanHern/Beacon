@@ -124,6 +124,9 @@ class Ajax {
 	static getPlaylists(profileHash){
 		return this.fetchWrapper('getPlaylists',profileHash,'json')
 	}
+	static getHistory(){
+		return this.fetchWrapper('getMyHistory','','json')
+	}
 }
 
 export default Ajax

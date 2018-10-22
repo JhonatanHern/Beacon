@@ -42,6 +42,9 @@ class Audio extends Component {
 		setInterval(this.updateBar,300)
 	}
 	async sendPetition(){
+		if (!this.props.songHash) {
+			return
+		}
 		const response = await fetch('/fn/holoc/petition',{
 			method:'POST',
 			body:this.props.songHash
@@ -120,6 +123,9 @@ class Audio extends Component {
 		this.setState({play:true})
 	}
 	async notifyPause(){
+		if (!this.state.petitionHash) {
+			return
+		}
 		const response = await fetch('/fn/holoc/action',{
 			method : 'POST',
 			body : JSON.stringify({
@@ -145,8 +151,20 @@ class Audio extends Component {
 		}
 		this.setState({play:!this.state.play})
 	}
-	handleEnd(e){
+	async handleEnd(e){
 		this.setState({play:false})
+		const response = await fetch('/fn/holoc/action',{
+			method : 'POST',
+			body : JSON.stringify({
+				petitionHash : this.state.petitionHash,
+				moment : Math.floor((this.audioRef.current.currentTime*100)/this.audioRef.current.duration),
+				type : 'end'
+			})
+		})
+		if (!response.ok) {
+			console.log('response failed:',response)
+			return
+		}
 	}
 	setTime(e){
 		e.preventDefault()

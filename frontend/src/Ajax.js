@@ -127,6 +127,9 @@ class Ajax {
 	static getHistory(){
 		return this.fetchWrapper('getMyHistory','','json')
 	}
+	static getStatistics(){
+		return this.fetchWrapper('pullTrackingData','','json')
+	}
 }
 
 export default Ajax

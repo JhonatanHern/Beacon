@@ -70,8 +70,6 @@ class App extends Component {
 	}
 	async updateFollowing(){
 		let following = await Ajax.getFollowing()
-		console.log('following:')
-		console.log(following)
 		this.setState({following:following})
 	}
 	async initProfile(){

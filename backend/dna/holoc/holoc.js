@@ -255,6 +255,7 @@ function action(params) {
 		moment    : Number( params.moment ),
 		type      : params.type
 	})
+	console.log('ph : ' + params.petitionHash)
 	var linkHash = commit('link',{
 		Links:[
 			{
@@ -266,7 +267,8 @@ function action(params) {
 	})
 	return linkHash
 }
-function petition(episodeHash) {
+
+function petition( episodeHash ) {
 	var hash = commit('petition',{
 		user : getMyProfileHash(),
 		timestamp : (new Date()).valueOf()
@@ -282,20 +284,57 @@ function petition(episodeHash) {
 	})
 	//Now we have to push one more link in order to access the petitions
 	//from the user's point of view. Like some sort of "history"
-	commit('p_link',{
+	var episode = get( episodeHash )
+	debug( episode )
+	var historyHash = commit( 'history_entry' , {
+		episode : episode,
+		timestamp : (new Date()).valueOf()
+	})
+	console.log(historyHash)
+	var historyEntryLink = commit( 'p_link' , {
 		Links:[{
-			Link : episodeHash,
+			Link : historyHash,
 			Base : ME,
-			Tag  : 'history'
+			Tag  : 'history_entry'
 		}]
 	})
+	console.log(historyEntryLink)
 	return hash
 }
 function getMyHistory() {
-	var links = getLinks( ME , 'history' , { Load : true } )
-	// links.forEach(function(link) {
-	// 	link.data = get(link.Entry.Links[0].Link)
-	// })
-	// debug(links)
+	var links = getLinks( ME , 'history_entry' , { Load : true } )
 	return JSON.stringify(links)
+}
+
+function getActionStats(hash) {
+	return getLinks(hash,'action',{Load:true})
+}
+
+// the next 3 functions are similar in structure and behavior. I've considered
+// using the recursive approach, but it would be really hard to mantain and
+// even harder to debug.
+
+function getPetitionStats(hash) {//private function
+	var pts = getLinks(hash,'petition',{Load:true})
+	pts.forEach(function (pt,i) {
+		pts[i].actions = getActionStats(pt.Hash)
+	})
+	return pts
+}
+function getSongsStats(hash){//private function
+	var sgs = getLinks(hash,'episode',{Load:true})
+	sgs.forEach(function (sg,i) {
+		sgs[i].petitions = getPetitionStats(sg.Hash)
+	})
+	return sgs
+} 
+function getAlbumsStats(hash){//private function
+	var pls = getLinks(hash,'playlist',{Load:true})
+	pls.forEach(function (pl,i) {
+		pls[i].songs = getSongsStats(pl.Hash)
+	})
+	return pls
+}
+function pullTrackingData(){//public function
+	return JSON.stringify( getAlbumsStats( getMyProfileHash( ) ) )
 }

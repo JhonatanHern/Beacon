@@ -9,20 +9,33 @@ class Settings extends Component {
 		this.change = this.change.bind(this)
 	}
 	theme(e){
-		// e.preventDefault()
-		// e.target.checked = 'true'
 		document.body.className = e.target.getAttribute('data')
 	}
 	async change(e){
 		e.preventDefault()
 		const target = e.target.getAttribute('data')
-		if ( target === 'History' ) {
-			const history = await Ajax.getHistory()
-			this.setState({history:history})
+		switch(target){
+			case 'History':
+				const history = await Ajax.getHistory()
+				this.setState({history:history})
+				break
+			case 'Statistics':
+				const stats = await Ajax.getStatistics()
+				this.setState({stats:stats})
+				break
+			default:
+				//no need to do anything
 		}
 		this.setState({current:target})
 	}
 	render() {
+		let pausesPerSong = 0,
+			allSongs,
+			allPetitions
+		if (this.state.stats) {
+			allSongs = this.state.stats.reduce((acum,current)=>current.songs.concat(acum),[])
+			allPetitions =  allSongs.reduce((acum,current)=>current.petitions.concat(acum),[])
+		}
 		return (
 			<div id="settings">
 				<aside>
@@ -44,13 +57,35 @@ class Settings extends Component {
 					</section>
 					<section style={{display:this.state.current==="Statistics"?'block':'none'}}>
 						<h2>Statistics</h2>
+						Albums: {
+							this.state.stats &&
+							this.state.stats.length
+						}
+						<br/>
+						Songs: {
+							this.state.stats &&
+							this.state.stats.reduce((acum,current)=>current.songs.length+acum,0)
+						}
+						<br/>
+						Average pauses per song: {
+							allPetitions &&
+							(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='pause').length+acum,0)/allPetitions.length).toFixed(2)
+						}
+						<br/>
+						Average finished songs: {
+							allPetitions &&
+							(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='end').length+acum,0)/allPetitions.length).toFixed(2)*100
+						}%
 					</section>
 					<section className="track-holder" style={{display:this.state.current==="History"?'block':'none'}}>
 						<h2>History</h2>
 						{
 							this.state.history &&
 							this.state.history.map((e,i)=>
-								<Track data={e} play={this.props.play} key={i}/>
+								//using { Entry : e.Entry.episode }
+								//is a workaround for reusing the Track component
+								//without changing it's intern behavior
+								<Track data={ { Entry : e.Entry.episode , Hash : ''} } play={this.props.play} key={i}/>
 							)
 						}
 					</section>

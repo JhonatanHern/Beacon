@@ -7,7 +7,7 @@ let holocServer = null,
 	reacData = ''
 
 process.chdir('frontend')
-reactServer = spawn('npm',['start'])
+reactServer = spawn('npm',['start']) 
 process.chdir('../backend')
 holocServer = spawn('node',['holo-server.js'])
 process.chdir('..')

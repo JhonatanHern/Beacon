@@ -89,6 +89,11 @@
 					"Name": "p_link",
 					"DataFormat": "links", 
 					"Sharing": "private"
+				},
+				{
+					"Name":"history_entry",
+					"DataFormat": "json", 
+					"Sharing": "public"
 				}
 			],
 			"Functions": [
@@ -194,6 +199,11 @@
 				},
 				{
 					"Name": "getMyHistory",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "pullTrackingData",
 					"CallingType": "string",
 					"Exposure": "public"
 				}

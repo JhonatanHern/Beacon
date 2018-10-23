@@ -30,8 +30,8 @@ class Settings extends Component {
 	}
 	render() {
 		let pausesPerSong = 0,
-			allSongs,
-			allPetitions
+			allSongs = [],
+			allPetitions = []
 		if (this.state.stats) {
 			allSongs = this.state.stats.reduce((acum,current)=>current.songs.concat(acum),[])
 			allPetitions =  allSongs.reduce((acum,current)=>current.petitions.concat(acum),[])
@@ -67,14 +67,29 @@ class Settings extends Component {
 							this.state.stats.reduce((acum,current)=>current.songs.length+acum,0)
 						}
 						<br/>
+						Total reproductions: {allPetitions && allPetitions.length}
+						<br/>
+						Average reproductions per song: {
+							allSongs.length ?
+								(allSongs.reduce((acum,current)=>current.petitions.length+acum,0)/allSongs.length).toFixed(2)
+							:
+								'0'
+						}
+						<br/>
 						Average pauses per song: {
 							allPetitions &&
-							(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='pause').length+acum,0)/allPetitions.length).toFixed(2)
+							allPetitions.length ?
+								(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='pause').length+acum,0)/allPetitions.length).toFixed(2)
+							:
+								'0'
 						}
 						<br/>
 						Average finished songs: {
 							allPetitions &&
-							(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='end').length+acum,0)/allPetitions.length).toFixed(2)*100
+							allPetitions.length ?
+								(allPetitions.reduce((acum,current)=>current.actions.filter(pet=>pet.Entry.type==='end').length+acum,0)/allPetitions.length).toFixed(2)*100
+							:
+								'0'
 						}%
 					</section>
 					<section className="track-holder" style={{display:this.state.current==="History"?'block':'none'}}>

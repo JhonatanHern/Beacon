@@ -449,6 +449,7 @@ main{
 	top: 50%;
 	height: 10px;
 	transform: translateY(-50%);
+	overflow: hidden;
 }
 #progress{
 	border-radius: 5px;

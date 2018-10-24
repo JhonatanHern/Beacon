@@ -131,7 +131,7 @@ function chunkSubstr(str, size) {
 function saveTrack(track) {
 	var songHash = commit('track',track)
 	var array = chunkSubstr(track,102400)//100kb
-	console.log(array.length)
+	var shortLength = Math.floor( array.length * .1 )//10%
 	array.forEach(function(current,i){
 		var src = commit('track',{data:current,index:i})
 		var hash = commit('link',{Links:[{
@@ -139,18 +139,32 @@ function saveTrack(track) {
 			Tag:'track',
 			Link:src
 		}]})
+		if ( i < shortLength ) {
+			var hashDemo = commit('link',{Links:[{
+				Base:songHash,
+				Tag:'trackDemo',
+				Link:src
+			}]})
+		}
 	})
 	return songHash
 }
 function getTrack(hash){
 	// console.log('required: ' + hash)
 	var links = getLinks(hash,'track',{Load:true})
-	console.log(links.length + ' blocks loaded')
 	var res = '['
 	links.forEach(function (link) {
 		res += '{"index":'+link.Entry.index+',"data":"'+link.Entry.data+'"},'
 	})
-	console.log('response prepared, response length: '+(res.length+13))
+	return res + '{"index":-1}]'
+}
+function getTrackDemo(hash){
+	// console.log('required: ' + hash)
+	var links = getLinks(hash,'trackDemo',{Load:true})
+	var res = '['
+	links.forEach(function (link) {
+		res += '{"index":'+link.Entry.index+',"data":"'+link.Entry.data+'"},'
+	})
 	return res + '{"index":-1}]'
 }
 function saveEpisode(episode) {
@@ -267,7 +281,6 @@ function action(params) {
 	})
 	return linkHash
 }
-
 function petition( episodeHash ) {
 	var hash = commit('petition',{
 		user : getMyProfileHash(),

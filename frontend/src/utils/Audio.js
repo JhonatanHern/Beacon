@@ -59,8 +59,12 @@ class Audio extends Component {
 	}
 	updateBar(){
 		if (this.audioRef.current) {
+			let calculated = (this.audioRef.current.currentTime*100)/this.audioRef.current.duration
+			if (this.props.demo) {
+				calculated *= 10
+			}
 			this.setState({
-				progress : (this.audioRef.current.currentTime*100)/this.audioRef.current.duration
+				progress : calculated
 			})
 		}
 	}
@@ -83,7 +87,7 @@ class Audio extends Component {
 					console.log('There has been a problem with your fetch operation: ', error.message)
 				})
 			} else {//file in the holochain, this should be a hash
-				fetch('/fn/holoc/getTrack',{
+				fetch('/fn/holoc/getTrack'+(this.props.demo?'Demo':''),{
 					method : 'POST',
 					body : props.src ? props.src : ''
 				})
@@ -175,6 +179,9 @@ class Audio extends Component {
 		let proportion = clickWidth / barWidth
 		//this.setState({progress : ( clickWidth *100 ) / barWidth })
 		this.audioRef.current.currentTime = proportion * this.audioRef.current.duration
+		if (this.props.demo) {
+			this.audioRef.current.currentTime = this.audioRef.current.currentTime / 10
+		}
 	}
 	volumeClick(e){
 		let volume = (( window.innerHeight - e.clientY) - 60)/180

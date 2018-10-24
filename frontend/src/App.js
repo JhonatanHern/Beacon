@@ -129,9 +129,6 @@ class App extends Component {
 	addAudio(hash){
 		this.setState({displayNewTrackModal:true})
 	}
-	changeAudio(hash){
-		this.setState({audioSrc:hash})
-	}
 	async uploadTrack({name,file}){
 		this.setState({displayNewTrackModal:false})
 		await Ajax.uploadTrack({
@@ -172,9 +169,9 @@ class App extends Component {
 					me={this.state.me}
 					viewPlaylist={this.viewPlaylist}
 					viewProfile={this.viewProfile}
-					play={(audioHash,songHash)=>this.setState({audioSrc:audioHash,songHash:songHash,audioReplay:Math.random()})}
+					play={(audioHash,songHash,isdemo)=>this.setState({demo:isdemo,audioSrc:audioHash,songHash:songHash,audioReplay:Math.random()})}
 					/>
-				<Audio src={this.state.audioSrc} songHash={this.state.songHash } ar={this.state.audioReplay}/>
+				<Audio demo={this.state.demo} src={this.state.audioSrc} songHash={this.state.songHash } ar={this.state.audioReplay}/>
 				{
 					this.state.displayCreateProfileModal &&
 					<CreateProfileModal close={this.closeModal} done={this.submitProfile}/>
@@ -195,7 +192,7 @@ class App extends Component {
 						tracklist={this.state.currentTracklist || []}
 						close={this.closePlaylist}
 						mine={this.state.currentPlaylist.data.owner===this.state.me.Hash}
-						play={(audioHash,songHash)=>this.setState({audioSrc:audioHash,songHash:songHash,audioReplay:Math.random()})}
+						play={(audioHash,songHash,isdemo)=>this.setState({audioSrc:audioHash,songHash:songHash,audioReplay:Math.random(),demo:isdemo})}
 						/>
 				}
 			</div>

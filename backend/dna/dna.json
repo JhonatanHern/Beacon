@@ -123,6 +123,11 @@
 					"Exposure": "public"
 				},
 				{
+					"Name": "getTrackDemo",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
 					"Name": "getChannels",
 					"CallingType": "json",
 					"Exposure": "public"

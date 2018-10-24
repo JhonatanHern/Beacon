@@ -67,7 +67,7 @@ class Track extends React.Component{
 	render(){
 		return (
 			<div className='play-track'>
-				<div onClick={ev=>this.props.play(this.props.data.Entry.datalink,this.props.data.Hash)}>
+				<div onClick={ev=>this.props.play(this.props.data.Entry.datalink,this.props.data.Hash,false)}>
 					<span role="img" aria-label="play button">▶️</span>
 					<small>{ this.props.data.Entry.name }</small>
 				</div>
@@ -107,6 +107,7 @@ class Track extends React.Component{
 					<a href="/" onClick={this.viewComments}>view comments</a>
 				}
 				<a href="/" style={{marginLeft:'.5em'}} onClick={e=>{e.preventDefault();this.setState({display:!this.state.display})}}>comment</a>
+				<a href="/" style={{marginLeft:'.5em'}} onClick={e=>{e.preventDefault();this.props.play(this.props.data.Entry.datalink,this.props.data.Hash,true)}}>play demo</a>
 				<section className="comment-panel" style={{display:this.state.display?'flex':'none'}}>
 					<textarea ref={this.commentRef} placeholder="Insert your comment"></textarea>
 					<small>

@@ -1,0 +1,28 @@
+{
+	"title": "Transaction Schema",
+	"type": "object",
+	"properties": {
+		"timestamp": {
+			"type": "integer"
+		},
+		"concept": {
+			"type": "string"
+		},
+		"amount": {
+			"type": "integer"
+		},
+		"from": {
+			"type": "string"
+		},
+		"to": {
+			"type": "string"
+		},
+		"from_link": {
+			"type": "string"
+		},
+		"to_link": {
+			"type": "string"
+		}
+	},
+    "required": ["concept", "amount", "timestamp","from","to"]
+}

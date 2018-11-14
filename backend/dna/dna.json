@@ -213,6 +213,49 @@
 					"Exposure": "public"
 				}
 			]
-		}
+		},
+        {
+            "Name": "bacon",
+            "Description": "Coin functionality",
+            "CodeFile": "bacon.js",
+            "RibosomeType": "js",
+            "BridgeFuncs": null,
+            "Config": null,
+            "Entries": [
+                {
+                    "Name": "transaction",
+                    "DataFormat": "json",
+                    "SchemaFile": "transaction.json",
+                    "Sharing": "public"
+                },
+                {
+                    "Name": "link",
+                    "DataFormat": "links",
+                    "Sharing": "public"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "transact",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "currentBalance",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "getHistory",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "getAddress",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                }
+            ]
+        }
 	]
 }

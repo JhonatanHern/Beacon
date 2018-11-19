@@ -25,7 +25,6 @@
 					"DataFormat": "json",
 					"Sharing": "public",
 					"SchemaFile": "profile.json"
-
 				},
 				{
 					"Name": "profilePic",
@@ -94,6 +93,12 @@
 					"Name":"history_entry",
 					"DataFormat": "json", 
 					"Sharing": "public"
+				},
+				{
+					"Name":"sale",
+					"DataFormat": "json", 
+					"Sharing": "public",
+					"SchemaFile":"sale.json"
 				}
 			],
 			"Functions": [
@@ -211,6 +216,16 @@
 					"Name": "pullTrackingData",
 					"CallingType": "string",
 					"Exposure": "public"
+				},
+				{
+					"Name": "songOwned",
+					"CallingType": "string",
+					"Exposure": "public"
+				},
+				{
+					"Name": "buySong",
+					"CallingType": "json",
+					"Exposure": "public"
 				}
 			]
 		},
@@ -252,6 +267,11 @@
                 },
                 {
                     "Name": "getAddress",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "getData",
                     "CallingType": "string",
                     "Exposure": "public"
                 }

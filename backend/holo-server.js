@@ -12,7 +12,6 @@ stream.on('data', (chunk) => {
 function restart() {
 	holoserver.kill('SIGHUP')
 	console.clear()
-	console.log('Restarting server...')
 	holoserver = spawn('hcdev', ['web'])
 	stream = holoserver.stdout
 	stream.on('data', (chunk) => {

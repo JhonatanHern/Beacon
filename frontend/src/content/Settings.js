@@ -29,8 +29,7 @@ class Settings extends Component {
 		this.setState({current:target})
 	}
 	render() {
-		let pausesPerSong = 0,
-			allSongs = [],
+		let allSongs = [],
 			allPetitions = []
 		if (this.state.stats) {
 			allSongs = this.state.stats.reduce((acum,current)=>current.songs.concat(acum),[])

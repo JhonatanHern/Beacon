@@ -19,7 +19,7 @@ const Playlist = props => (
 					<React.Fragment>
 						<h4>Songs:</h4>
 						{Array.from(props.tracklist).map((e,i)=>(
-							<Track data={e} play={props.play} key={i}/>
+							<Track owner={props.data.data.owner} data={e} play={props.play} key={i}/>
 						))}
 						{
 							props.mine &&

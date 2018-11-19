@@ -12,7 +12,7 @@ class CreateProfileModal extends Component{
 		this.dropZone = this.dropZone.bind(this)
 		this.change = this.change.bind(this)
 		this.state = {
-			pictureSrc : 'default.png',
+			pictureSrc : '',
 			file : null
 		}
 		this.profile_pic = React.createRef()
@@ -70,7 +70,7 @@ class CreateProfileModal extends Component{
 			<section className='modal' onClick={this.props.close}>
 				<form onSubmit={e=>{e.preventDefault();e.stopPropagation()}}>
 					<section ref={this.dropZone} htmlFor='imgData' onClick={this.uploadZoneClick}>
-						<Image base64Src={this.state.pictureSrc} onDrop={this.drop}/>
+						<Image base64Src={this.state.pictureSrc} onDrop={this.drop} literal_src="upl.png"/>
 					</section>
 					<div>
 						<input placeholder="username" ref={this.username}/>

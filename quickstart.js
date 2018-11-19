@@ -1,4 +1,4 @@
-// é á í ó ú ñ Ñ
+// é á í ó ú ñ Ñ 🔒
 const { spawn } = require('child_process')
 
 let holocServer = null,
@@ -20,6 +20,11 @@ function display() {
 }
 
 holocServer.stdout.on('data', (chunk) => {
+	console.clear()
+	holoData = chunk.toString()
+	display()
+})
+holocServer.stderr.on('data', (chunk) => {
 	console.clear()
 	holoData = chunk.toString()
 	display()

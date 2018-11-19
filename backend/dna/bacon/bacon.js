@@ -1,9 +1,8 @@
 /*
- * 
- * 
- * 
- * 
+ * this file is very different from the 'bacon' in github, these changes are made
+ * to make the interaction easier
 */
+
 var initialBalance = 100
 
 function isValidEntryType (entryType) {
@@ -72,6 +71,11 @@ function validateModPkg (entryType) {return null}
 function validateDelPkg (entryType) {return null}
 
 function transact(transactionData) {
+  console.log('transaction data:')
+  debug(transactionData)
+  if ( currentBalance() < Math.floor(Number(transactionData.amount)) ) {
+    return ''
+  }
   var transaction = {
     timestamp: (new Date()).valueOf(),
     concept  : transactionData.concept,
@@ -81,17 +85,18 @@ function transact(transactionData) {
   }
   var T0Hash = commit('transaction',transaction)
   console.log('transaction\'s commit successful ',T0Hash)
-  var L1Hash = commit('link',{
-    Links:[
-      {
-        Base : transactionData.to,
-        Link : T0Hash,
-        Tag  : 'in'
-      }
-    ]
-  })
-  //send message to peer so he can validate it
   try{
+    var L1Hash = commit('link',{
+      Links:[
+        {
+          Base : transactionData.to,
+          Link : T0Hash,
+          Tag  : 'in'
+        }
+      ]
+    })
+    console.log('L1Hash: ' + L1Hash)
+    //send message to peer so he can validate it
     var res = send(
       transactionData.to ,
       {
@@ -99,10 +104,11 @@ function transact(transactionData) {
         L1 : L1Hash
       }
     )
+    console.log('message sent')
   }catch(e){
     console.log('Error: ',e)
   }
-  return '{"success":true,"message":"Transaction sent"}'
+  return T0Hash
 }
 function sendRes(message,id) {
   console.log( 'response received:' )
@@ -154,7 +160,7 @@ function receive(peer, transactionData) {
       Link : T1Hash
     }]
   })
-  debug(linkingLink)
+  console.log('linking link: '+linkingLink)
   console.log('end of transaction----------------------------------------------------')
 }
 /*
@@ -202,7 +208,7 @@ function currentBalance(peerAddress) {
   if (!peerAddress) {
     peerAddress = App.Key.Hash
   }
-  var links = getLinks( peerAddress, '' ,{ Load : true } )
+  var links = getLinks( peerAddress , '' , { Load : true } )
   var billing = initialBalance
   for (var i = links.length - 1; i >= 0; i--) {
     billing += validTransaction(links[i],peerAddress)
@@ -217,4 +223,7 @@ function getHistory(hash) {
 }
 function getAddress(argument) {
   return App.Key.Hash
+}
+function getData(hash) {
+  return JSON.stringify(hash)
 }

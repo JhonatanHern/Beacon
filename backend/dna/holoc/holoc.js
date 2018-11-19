@@ -3,15 +3,27 @@
 */
 var APP_ID = App.DNA.Hash,
 	ME = App.Key.Hash
-/**
- * Is this a valid entry type?
- *
- * @param {any} entryType The data to validate as an expected entryType.
- * @return {boolean} true if the passed argument is a valid entryType.
- */
+
 function isValidEntryType (entryType) {
 	// Add additonal entry types here as they are added to dna.json.
-	return true || ["sampleEntry"].includes(entryType);
+	switch(entryType){
+		case 'link':
+		case 'action':
+		case 'petition':
+		case 'opinion':
+		case 'profile':
+		case 'history_entry':
+		case 'comment':
+		case 'tag':
+		case 'track':
+		case 'episode':
+		case 'playlist':
+		case 'p_link':
+		case 'sale':
+		case 'profilePic':
+			return true
+	}
+	return false
 }
 function getCreator (hash) {
 	return get(hash, { GetMask: HC.GetMask.Sources })[0];
@@ -187,6 +199,7 @@ function getImg(hash){
 	return getLinks(hash,'',{Load:true})[0].Entry
 }
 function createProfile(data) {
+	data.address = App.Key.Hash
 	var profileHash = commit('profile',data)
 	var linkHash = commit('link',{
 		Links:[{
@@ -318,15 +331,12 @@ function getMyHistory() {
 	var links = getLinks( ME , 'history_entry' , { Load : true } )
 	return JSON.stringify(links)
 }
-
 function getActionStats(hash) {
 	return getLinks(hash,'action',{Load:true})
 }
-
 // the next 3 functions are similar in structure and behavior. I've considered
 // using the recursive approach, but it would be really hard to mantain and
 // even harder to debug.
-
 function getPetitionStats(hash) {//private function
 	var pts = getLinks(hash,'petition',{Load:true})
 	pts.forEach(function (pt,i) {
@@ -350,4 +360,105 @@ function getAlbumsStats(hash){//private function
 }
 function pullTrackingData(){//public function
 	return JSON.stringify( getAlbumsStats( getMyProfileHash( ) ) )
+}
+/*Next functions are for song buying functionality*/
+/* 
+ * Variables:
+ * 
+ * S  : the sale under the 'sale' data structure
+ * L1 : link from the user to the sale, tagged: 'bought'
+ * L2 : link from the song to the sale, tagged: 'sold'
+ * L3 : optional link from the guest to the sale, tagged: 'received'
+ * 
+ * Steps to buy a song for the user:
+ * 
+ * 1 - Do the transaction
+ * 2 - commit the sale S
+ * 3 - make links L1 and L2
+ * 
+ * Steps to buy a song for someone else:
+ * 
+ * 1 - Do the transaction
+ * 2 - commit the sale under the 'sale' data structure
+ * 3 - create the links L2 and L3
+ * 
+ * Steps to check if an user has a song:
+ * 
+ * 1 - use his profile's hash as base to get the links tagged 'bought'
+ * 2 - filter them until the transaction is the one from the song
+ * 3 - if the array is not empty go to step six
+ * 4 - use his profile's hash as base to get the links tagged 'received'
+ * 5 - filter them until the transaction is the one from the song
+ * 6 - return array.length === 0 ? 'false' : 'true'
+*/
+
+/* function buySong
+ * Expected parameters:
+	 * data (Object)
+	 * data.owner (string) // owner of the song
+	 * data.song (string)  //song's hash
+	 * data.guest (string) (optional) //recipient of the gift
+ * Returns hash or error
+*/
+function buySong(data) {
+	var owner = get(data.owner),
+		songHash = data.song
+	debug('owner:')
+	debug(owner)
+	var T0Hash = call( 'bacon' , 'transact' , {//make the transaction via bridge
+		to      : owner.address,
+		concept : songHash,
+		amount  : 1
+	}).split('"').join('')
+	if ( ! T0Hash ) {
+		return 'error in transaction'
+	}
+	console.log('transaction hash :',T0Hash)
+	var saleData = {
+		transaction : T0Hash,
+		song        : songHash,
+		user        : owner.address
+	}
+	if ( data.guest ) {//the song is a gift
+		saleData.giftRecipient = data.guest
+	}
+	try{
+		var saleHash = commit( 'sale' , saleData )
+	}catch(err){
+		console.log('sale validation failed: ',err)
+		console.log('saleData: ',JSON.stringify(saleData,null,2))
+		return
+	}
+	var linksToCommit = [{//L2
+		Link : saleHash,
+		Base : data.owner,
+		Tag  : 'sold'
+	}]
+	if ( data.guest ) {//song as a gift
+		linksToCommit.push({//L3
+			Link : saleHash,
+			Base : data.guest,
+			Tag  : 'received'
+		})
+	}else{//song for me
+		linksToCommit.push({//L1
+			Link : saleHash,
+			Base : getMyProfileHash(),
+			Tag  : 'bought'
+		})
+	}
+	return commit('link',{Links:linksToCommit})
+}
+function songOwned(songHash) {
+	var bought = getLinks(getMyProfileHash(),'bought',{Load:true})
+	var transaction = bought.filter(function(currentTransaction) {
+		return currentTransaction.Entry.song === songHash
+	})[0]
+	if (!transaction) {
+		var received = getLinks(getMyProfileHash(),'received',{Load:true})
+		transaction = received.filter(function(currentTransaction) {
+			return currenTransaction.Entry.song === songHash
+		})[0]
+	}
+	return transaction ? 'true' : 'false'
 }

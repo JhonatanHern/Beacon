@@ -1,0 +1,11 @@
+{
+    "title" : "Sale Eschema",
+    "type" : "object",
+    "properties" : {
+        "giftRecipient":{"type":"string"},
+        "transaction":{"type":"string"},
+        "song":{"type":"string"},
+        "user":{"type":"string"}
+    },
+    "required":["transaction","song","user"]
+}

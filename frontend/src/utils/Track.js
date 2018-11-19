@@ -11,11 +11,50 @@ class Track extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {commentRating:0}
-		this.viewComments = this.viewComments.bind(this)
-		this.comment = this.comment.bind(this)
-		this.rate = this.rate.bind(this)
+		
+		;[
+			'viewComments',
+			'sendToFriend',
+			'checkBuy',
+			'comment',
+			'rate',
+			'buy'
+		].forEach(func=>{
+			this[func] = this[func].bind(this)
+		})
+
 		this.commentRef = React.createRef()
+		this.checkBuy()
 	}
+	async buy(e){
+		e.preventDefault()
+		const response = await fetch('/fn/holoc/buySong',{
+			method:'POST',
+			body:JSON.stringify({
+				song : this.props.data.Hash,
+				owner: this.props.owner
+			})
+		})
+		if (!response.ok) {
+			Allert.error('Network error')
+			return
+		}
+		if(this.checkBuy()){
+			Allert.message('successfull buy')
+		}else{
+			Allert.error('Network error')
+		}
+	}
+	async checkBuy(){
+		const response = await fetch('/fn/holoc/songOwned',{
+			method:'POST',
+			body:this.props.data.Hash
+		})
+		const result = await response.text()==='true'
+		this.setState({userHasSong:result})
+		return result
+	}
+	async sendToFriend(){}
 	async viewComments( e ){
 		if ( e && e.preventDefault ) {
 			e.preventDefault()
@@ -56,19 +95,22 @@ class Track extends React.Component{
 		}
 		this.commentRef.current.value = ''
 		this.setState({commentRating:0})
-		const hash = await response.text()
-		console.log('Hash:')
-		console.log(hash)
+		await response.text()
 		this.viewComments()
 	}
 	rate(num){
 		this.setState({commentRating:num})
 	}
+	componentDidUpdate(prevProps, prevState, snapshot){
+		if (prevProps.data.Hash !== this.props.data.Hash) {
+			this.checkBuy()
+		}
+	}
 	render(){
 		return (
 			<div className='play-track'>
-				<div onClick={ev=>this.props.play(this.props.data.Entry.datalink,this.props.data.Hash,false)}>
-					<span role="img" aria-label="play button">▶️</span>
+				<div onClick={ev=>(this.state.userHasSong|| !this.props.owner)&&this.props.play(this.props.data.Entry.datalink,this.props.data.Hash,false)}>
+					<span role="img" aria-label="play button">{this.state.userHasSong || !this.props.owner?'▶️':'🔒'}</span>
 					<small>{ this.props.data.Entry.name }</small>
 				</div>
 				{this.state.comments?
@@ -79,7 +121,6 @@ class Track extends React.Component{
 									<a href="/" onClick={e=>e.preventDefault()}>
 										{c.Entry.from}
 									</a>
-									<br/>
 									{c.Entry.text}
 									<br/>
 									<div className="star-holder">
@@ -108,6 +149,11 @@ class Track extends React.Component{
 				}
 				<a href="/" style={{marginLeft:'.5em'}} onClick={e=>{e.preventDefault();this.setState({display:!this.state.display})}}>comment</a>
 				<a href="/" style={{marginLeft:'.5em'}} onClick={e=>{e.preventDefault();this.props.play(this.props.data.Entry.datalink,this.props.data.Hash,true)}}>play demo</a>
+				{
+					!this.state.userHasSong && this.props.owner &&
+					<a href="/" style={{marginLeft:'.5em'}} onClick={this.buy}>buy song</a>
+				}
+				<a href="/" style={{marginLeft:'.5em'}} onClick={this.sendToFriend}>send to a friend</a>
 				<section className="comment-panel" style={{display:this.state.display?'flex':'none'}}>
 					<textarea ref={this.commentRef} placeholder="Insert your comment"></textarea>
 					<small>

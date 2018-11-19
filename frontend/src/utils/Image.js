@@ -33,7 +33,7 @@ class Image extends Component {
 			return (
 				<img
 					alt={ this.props.alt }
-					src={ this.props.literal_src || this.props.base64Src || this.state.src || this.props.default }
+					src={ this.props.base64Src || this.props.literal_src || this.state.src || this.props.default }
 					onError={ this.handleError }/>
 			)
 	}

@@ -23,6 +23,12 @@ class Allert {
 		}
 		this.displayMessage(config)
 	}
+	static error(message){
+		Allert.displayMessage({
+			message:message,
+			color:'error'
+		})
+	}
 	static adjustTop(){
 		for (let i = 0; i < this.stack.length; i++) {
 			let value = this.stack[i].getAttribute('hval')

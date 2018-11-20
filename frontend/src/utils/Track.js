@@ -54,7 +54,26 @@ class Track extends React.Component{
 		this.setState({userHasSong:result})
 		return result
 	}
-	async sendToFriend(){}
+	async sendToFriend(e){
+		e.preventDefault()
+		const response = await fetch('/fn/holoc/buySong',{
+			method:'POST',
+			body:JSON.stringify({
+				song : this.props.data.Hash,
+				owner: this.props.owner,
+				guest : prompt("Insert your friend's profile address")
+			})
+		})
+		if (!response.ok) {
+			Allert.error('Network error')
+			return
+		}
+		if(this.checkBuy()){
+			Allert.message('successfully sent, now your friend can listen to this song')
+		}else{
+			Allert.error('Network error')
+		}
+	}
 	async viewComments( e ){
 		if ( e && e.preventDefault ) {
 			e.preventDefault()
